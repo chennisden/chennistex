@@ -23,7 +23,7 @@
 
 \setlength{\columnsep}{30pt}
 
-\input{fonts}
+\input{universal}
 
 \usepackage{newpxtext}
 \usepackage{newpxmath}
@@ -54,8 +54,6 @@ import geometry;
 \RequirePackage[skaknew]{skak}
 
 % useful operators
-
-\input{mathOperators}
 
 \usepackage{xcolor}
 
@@ -145,29 +143,7 @@ import geometry;
 
 % chess font black magic i do not care to understand
 
-\RequirePackage{adjustbox} % needs adjustbox
-
-\newcommand{\pawnB}[1][1.3ex]{%
-\adjustbox{Trim=4.3pt 2.6pt 4.3pt 0pt,width=#1,margin=0.2ex 0ex 0.2ex 0ex}{\BlackPawnOnWhite}%
-}%
-\newcommand{\rookB}[1][1.58ex]{%
-\adjustbox{Trim=3.2pt 2.2pt 3.2pt 0pt,width=#1,raise=0ex,margin=0.1ex 0ex 0.1ex 0ex}{\BlackRookOnWhite}%
-}%
-\newcommand{\knightB}[1][1.85ex]{%
-\adjustbox{Trim=2.3pt 2.35pt 2.5pt 0pt,width=#1,raise=-0.03ex,margin=0.14ex 0ex 0.14ex 0ex}{\BlackKnightOnWhite}%
-}%
-\newcommand{\bishopB}[1][1.79ex]{%
-\adjustbox{Trim=2.3pt 2pt 2.3pt 0pt,width=#1,raise=-0.12ex,margin=0.1ex 0ex 0.1ex 0ex}{\BlackBishopOnWhite}%
-}%
-\newcommand{\queenB}[1][2.05ex]{%
-\adjustbox{Trim=1.2pt 2.2pt 1.2pt 0pt,width=#1,raise=-0.08ex,margin=0.1ex 0ex 0.1ex 0ex}{\BlackQueenOnWhite}%
-}%
-\newcommand{\kingB}[1][1.95ex]{%
-\adjustbox{Trim=2pt 2pt 2pt 0pt,width=#1,raise=-0.06ex,margin=0.13ex 0ex 0.13ex 0ex}{\BlackKingOnWhite}%
-}%
-
-\newcommand{\probSymb}{\pawnB}
-\newcommand{\reqSymb}{\knightB}
+\input{chessBM}
 
 \newcommand{\minpt}[1]{Minimum is {\color{dpurp}[#1\,\probSymb]}. Problems denoted with {\color{importantred}\reqSymb} are required. (They still count towards the point total.)}
 

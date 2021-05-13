@@ -32,6 +32,10 @@ import geometry;
 \end{asydef}
 \fi
 
+% universal imports
+
+\input{universal}
+
 %tikz
 \RequirePackage{tikz}
 \usepackage{tkz-euclide}
@@ -214,8 +218,6 @@ import geometry;
 \RequirePackage{pifont}
 \RequirePackage[T1]{fontenc}
 
-\input{fonts}
-
 % more generic formatitng
 
 \RequirePackage{amsmath,amsthm,amssymb}
@@ -249,10 +251,6 @@ import geometry;
 	urlcolor=black}
 \tableofcontents}
 }
-
-% useful operators
-
-\input{mathOperators}
 
 % YOU BROKEN PIECE OF SHIT
 
@@ -649,8 +647,6 @@ leftline=true]{remark}{Remark}
 \usepackage{bm}
 
 \newcommand{\ansbold}[1]{{\color{darkmidnightblue}\bm{#1}}}
-
-\input{tikzMacros}
 
 \newcommand{\answer}[5]{\vspace{0.2cm}\noindent$\textbf{(A)}\ #1 \qquad\textbf{(B)}\ #2 \qquad\textbf{(C)}\ #3 \qquad\textbf{(D)}\ #4 \qquad\textbf{(E)}\ #5$}
 
