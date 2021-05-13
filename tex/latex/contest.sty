@@ -20,11 +20,14 @@
 \ifmat
 \fancyfoot[L]{
 {\color{black}
+\shifttext{25pt}{
+\raisebox{-63pt}[0pt][0pt]{\begin{tikzpicture}
+\draw (0,0) node {{\alegreyafont\fontsize{52}{50}\selectfont \color{logopurple}{\textbf{AT}}}};
+\end{tikzpicture}}}
+\shifttext{-200pt}{
 \raisebox{-60pt}[0pt][0pt]{
 \includegraphics[width=2cm]{mountain.png}}
-\raisebox{-56pt}[0pt][0pt]{\begin{tikzpicture}
-\draw (0,0) node {{\alegreyafont\fontsize{40}{50}\selectfont MAT}};
-\end{tikzpicture}}
+}
 }
 }
 \else
@@ -68,6 +71,7 @@ import geometry;
 
 \usepackage[dvipsnames]{xcolor}
 
+\definecolor{logopurple}{RGB}{64,45,67}%the darker purple in logo
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
 \definecolor{sangria}{rgb}{0.57, 0.0, 0.04}
 \definecolor{darkpurple}{RGB}{45,0,90} % dark purple
@@ -82,6 +86,11 @@ import geometry;
 \iffont
 \usepackage{newpxtext,newpxmath}
 \fi
+
+\newcommand*{\shifttext}[2]{%
+  \settowidth{\@tempdima}{#2}%
+  \makebox[\@tempdima]{\hspace*{#1}#2}%
+}
 
 \DeclareRobustCommand{\alegreyafont}{\fontfamily{Alegreya-LF}\selectfont} % defines alegreya
 
