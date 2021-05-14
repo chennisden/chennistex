@@ -32,14 +32,16 @@ import geometry;
 \end{asydef}
 \fi
 
-% universal imports
-
-\input{universal}
-
 %tikz
 \RequirePackage{tikz}
 \usepackage{tkz-euclide}
 \usetikzlibrary{calc}
+
+%need to import amsmath before input universal for it to compile
+\usepackage{amsmath}
+
+% universal imports
+\input{universal}
 
 % colors, needed for pts and title
 
