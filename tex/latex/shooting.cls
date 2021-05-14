@@ -43,7 +43,7 @@ import cse5;
 import geometry;
 \end{asydef}
 
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsthm,amssymb}
 \usepackage{thmtools}
 \usepackage{mdframed}
 
