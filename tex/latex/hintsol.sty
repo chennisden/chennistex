@@ -40,7 +40,7 @@
 
 \NewEnviron{addhint}{%
 \stepcounter{hintcounter}%
-\ref{hint:\thehintcounter}%
+\ref{hint:\thehintcounter}~%
 \global\expandafter\let\csname hintlist\thehintcounter\endcsname\BODY%
 }
 \newcommand{\gethint}[1]{%
@@ -48,7 +48,7 @@
 }
 \NewEnviron{addsol}{%
 \stepcounter{solcounter}%
-\ref{sol:\thesolcounter}%
+\ref{sol:\thesolcounter}~%
 \global\expandafter\let\csname sollist\thesolcounter\endcsname\BODY%
 }
 \newcommand{\getsol}[1]{%
