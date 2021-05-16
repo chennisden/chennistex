@@ -34,9 +34,7 @@
 \whiledo{\value{sindex} < \value{solcounter}}{%
  \addtocounter{sindex}{1}%
  \pgfmathrandomitem\z{sollist}
- \begin{getsol}
- \z
- \end{getsol}
+ \getsol{\z}
  \prunelist{sollist}
  }
 \end{enumerate}

@@ -36,9 +36,7 @@
 \whiledo{\value{hindex} < \value{hintcounter}}{%
  \addtocounter{hindex}{1}%
  \pgfmathrandomitem\z{hintlist}
- \begin{gethint}
- \z
- \end{gethint}
+ \gethint{\z}
  \prunelist{hintlist}
  }
 \end{enumerate}
