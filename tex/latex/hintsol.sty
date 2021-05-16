@@ -1,0 +1,43 @@
+% hi this is mostly evan's code and the only thing i did was extend it to scrambled sols + change to NewEnviron
+
+\ProvidesPackage{hintsol}
+
+\RequirePackage{ifthen}
+\RequirePackage{answers}
+\RequirePackage{pgfmath}
+% Setup counters
+\newcounter{hindex}\setcounter{hindex}{0}
+\newcounter{hintcounter}\setcounter{hintcounter}{0}
+\newcounter{sindex}\setcounter{sindex}{0}
+\newcounter{solcounter}\setcounter{solcounter}{0}
+% Define \addhint and \gethint
+% \addhint is used as \begin{addhint}type in your hint\end{addhint}
+% you don't need brackets now -- DENNIS
+% \gethint is not used manually.
+
+\RequirePackage{environ}
+
+\NewEnviron{addhint}{%
+\stepcounter{hintcounter}%
+\ref{hint:\thehintcounter}%
+\expandafter\global\expandafter\let\csname hintlist\thehintcounter\endcsname\BODY%
+}
+\newcommand{\gethint}[1]{%
+\item \csname hintlist#1\endcsname \expandafter\label{hint:#1}
+}
+\NewEnviron{addsol}{%
+\stepcounter{solcounter}%
+\ref{sol:\thesolcounter}%
+\expandafter\gdef\csname sollist\thesolcounter\endcsname{\BODY}%
+}
+\newcommand{\getsol}[1]{%
+\item \csname sollist#1\endcsname \expandafter\label{sol:#1}
+}
+% You put (typically) \begin{hint}All of your \begin{addhint}..\end{addhint} here\end{hint} so it looks like Hint: # # #
+\newenvironment{hint}{\mbox\bgroup\footnotesize\normalfont\textbf{Hints}:}{\hspace{-0.5ex}\egroup}
+\newenvironment{hintone}{\mbox\bgroup\footnotesize\normalfont\textbf{Hint}:}{\hspace{-0.5ex}\egroup}
+\newenvironment{solu}{\mbox\bgroup\footnotesize\normalfont\textbf{Solution}:}{\hspace{-0.5ex}\egroup}
+\RequirePackage{changepage}
+
+\newcommand{\printhint}{\input{printhint}}
+\newcommand{\printsol}{\input{printsol}}
