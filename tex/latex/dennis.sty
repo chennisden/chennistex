@@ -14,12 +14,19 @@
 % Declare options
 
 \DeclareOption{mast}{\masttrue} % formatting for MAST Handouts, includes points & logo
-\DeclareOption{book}{\booktrue\hinttrue\mastfalse\oldsectrue}
 \DeclareOption{asyfalse}{\dennisasyfalse}
 \DeclareOption{oldsec}{\oldsectrue}
 \DeclareOption{invert}{\colorinverttrue}
 
 \ProcessOptions\relax
+
+% is this a book?
+
+\@ifclassloaded{book}{%
+  \booktrue\hinttrue\mastfalse\oldsectrue%
+}{%
+
+}
 
 % asy options
 \RequirePackage{asymptote}
