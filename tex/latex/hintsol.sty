@@ -28,7 +28,7 @@
 \NewEnviron{addsol}{%
 \stepcounter{solcounter}%
 \ref{sol:\thesolcounter}%
-\expandafter\gdef\csname sollist\thesolcounter\endcsname{\BODY}%
+\expandafter\global\expandafter\let\csname sollist\thesolcounter\endcsname\BODY%
 }
 \newcommand{\getsol}[1]{%
 \item \csname sollist#1\endcsname \expandafter\label{sol:#1}
