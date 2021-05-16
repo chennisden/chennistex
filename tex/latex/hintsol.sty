@@ -2,6 +2,27 @@
 
 \ProvidesPackage{hintsol}
 
+\RequirePackage{asymptote}
+
+\newcommand\asycode[2][]{%
+  \stepcounter{asy}%
+  \setkeys{ASYkeys}{#1}%
+  \ifASYattach
+    \ASYinlinefalse
+  \fi
+  \ifx\asydir\empty\else
+    \def\ASYprefix{\asydir/}%
+  \fi
+  \immediate\write\AsyPreStream{%
+    \noexpand\InputIfFileExists{%
+      \ASYprefix\noexpand\jobname-\the\c@asy.pre}{}{}%
+  }
+  \asy@write@graphic@header
+  \immediate\write\AsyStream{\detokenize{#2}}% here asy does the writing
+  \asy@finalise@stream
+  \asy@input@graphic
+}
+
 \RequirePackage{ifthen}
 \RequirePackage{answers}
 \RequirePackage{pgfmath}
