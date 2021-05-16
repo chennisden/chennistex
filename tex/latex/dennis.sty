@@ -22,11 +22,7 @@
 
 % is this a book?
 
-\@ifclassloaded{book}{%
-  \booktrue\hinttrue\mastfalse\oldsectrue%
-}{%
-
-}
+\@ifclassloaded{book}{\booktrue\hinttrue\mastfalse\oldsectrue}{}
 
 % asy options
 \RequirePackage{asymptote}
@@ -109,28 +105,12 @@ import geometry;
 \vspace{0.2cm}
 }
 
-% legacy code
-
-%\newcommand{\prob}[3]{
-%{\parindent=0pt
-%\stepcounter{problem}{\color{darkmidnightblue}[#1\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#2}\relax\else\hspace{3pt}(#2)\fi}{\hspace{3.5pt}#3}}
-%\vspace{0.2cm}
-%}
-%\newcommand{\req}[3]{
-%{\parindent=0pt
-%\stepcounter{problem}{\color{darkmidnightblue}[#1\,\faDiamond]} \textbf{{\color{sangria}Problem \theproblem}}{\textbf{{\color{sangria}\if\relax\detokenize{#2}\relax\else\hspace{3.5pt}(#2)\fi}}}{\hspace{3pt}#3}}
-%\vspace{0.2cm}
-%}
-
-% advances counter, takes in point value and problem statement as inputs
-% faPencil is kind of a big symbol
-
 \newcommand{\minpt}[1]{Minimum is {\color{sangria}[#1\,\faPencil]}. Problems with the {\color{sangria}\faDiamond} symbol are required.
     \vspace{\baselineskip}
 }
 % Specifies minimum amount of points to complete a unit
 
-\usepackage{soul}
+\RequirePackage{soul}
 
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
@@ -181,37 +161,7 @@ import geometry;
 \fi
 
 \ifhint % Scrambled hints setup
-\RequirePackage{ifthen}
-\RequirePackage{answers}
-% Setup counters
-\newcounter{hindex}\setcounter{hindex}{0}
-\newcounter{hintcounter}\setcounter{hintcounter}{0}
-\newcounter{sindex}\setcounter{sindex}{0}
-\newcounter{solcounter}\setcounter{solcounter}{0}
-% Define \addhint and \gethint
-% \addhint is used as \begin{addhint}{type in your hint}\end{addhint}
-% \gethint is not used manually.
-\newcommand\addhint[1]{%
-\stepcounter{hintcounter}%
-\ref{hint:\thehintcounter}%
-\expandafter\gdef\csname hintlist\thehintcounter\endcsname{#1}%
-}
-\newcommand\gethint[1]{%
-\item \csname hintlist#1\endcsname \label{hint:#1}
-}
-\newcommand\addsol[1]{%
-\stepcounter{solcounter}%
-\ref{sol:\thesolcounter}%
-\expandafter\gdef\csname sollist\thesolcounter\endcsname{#1}%
-}
-\newcommand\getsol[1]{%
-\item \csname sollist#1\endcsname \label{sol:#1}
-}
-% You put (typically) \begin{hint}All of your \begin{addhint}..\end{addhint} here\end{hint} so it looks like Hint: # # #
-\newenvironment{hint}{\mbox\bgroup\footnotesize\normalfont\textbf{Hints}:}{\hspace{-0.5ex}\egroup}
-\newenvironment{hintone}{\mbox\bgroup\footnotesize\normalfont\textbf{Hint}:}{\hspace{-0.5ex}\egroup}
-\newenvironment{solu}{\mbox\bgroup\footnotesize\normalfont\textbf{Solution}:}{\hspace{-0.5ex}\egroup}
-\RequirePackage{changepage}
+\RequirePackage{hintsol}
 \fi
 
 % font formatting
@@ -234,7 +184,7 @@ import geometry;
 
 % hyperref
 
-\usepackage[hypertexnames=false]{hyperref}
+\RequirePackage[hypertexnames=false]{hyperref}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -253,21 +203,6 @@ import geometry;
 	urlcolor=black}
 \tableofcontents}
 }
-
-% YOU BROKEN PIECE OF SHIT
-
-%% arcs
-%
-%\RequirePackage{xwatermark}
-%\RequirePackage{arcs}
-%
-%\makeatletter 
-%\providecommand\@gobblethree[3]{}
-%\patchcmd{\over@under@arc}
-% {\@gobbletwo}
-% {\@gobblethree}
-% {}{}
-%\makeatother
 
 \newcommand{\overarc}{\widehat} % overarc is so ugly anyways, also fixes arc being completely broken /shrug
 
@@ -346,7 +281,7 @@ import geometry;
 
 \ifoldsec % old section
 
-\usepackage{marvosym}
+\RequirePackage{marvosym}
 
 \titleformat{\section}
 {\sffamily\Large\bfseries}{{\color{sangria}\Radioactivity\,\thesection}}{0.8em}{}
@@ -610,33 +545,9 @@ leftline=true]{remark}{Remark}
 
 \def\walk{{\color{darkmidnightblue}\sffamily\bfseries Walkthrough:} $\phantom{}$}
 
-%\newmdtheoremenv[% settings
-%backgroundcolor=proofbckg,
-%linecolor=proofbrown,
-%linewidth=1.2pt,
-%nobreak=true,
-%innerleftmargin=5pt,
-%innerrightmargin=5pt,
-%innertopmargin=-5pt,
-%skipabove=-5pt,
-%topline=true,
-%bottomline=true,
-%rightline=false,
-%leftline=false]{sol}{Solution}
-%
-%\renewcommand{\thesol}{\relax\hspace{-2.5pt}}
-%
-%\def\endsol{\hfill$\blacksquare$}
-
-%\newenvironment{sol}[1][\unskip]
-%{
-%\begin{adjustwidth}{\parindent}{\parindent}
-%\textbf{\sffamily {\color{darkmidnightblue}Solution #1:}}
-%}{\hfill$\blacksquare$\end{adjustwidth}}
-
 %custom bullet points
 
-\newcommand*{\Item}{\item[\ding{70}]}
+\newcommand{\Item}{\item[\ding{70}]} % k dis is just dumb
 
 \newcommand{\dbold}[1]{{\color{sangria}\bfseries#1}}
 
@@ -646,7 +557,7 @@ leftline=true]{remark}{Remark}
 
 \newcommand{\db}{\dbold}
 
-\usepackage{bm}
+\RequirePackage{bm}
 
 \newcommand{\ansbold}[1]{{\color{darkmidnightblue}\bm{#1}}}
 
