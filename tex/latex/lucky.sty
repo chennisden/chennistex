@@ -127,7 +127,7 @@ import geometry;
 
 \newcommand{\db}[1]{{\color{dennispurple}\bfseries #1}}
 
-\usepackage{bm}
+\RequirePackage{bm}
 
 \newcommand{\ansbold}[1]{{\color{dennispurple}\bm{#1}}}
 
@@ -137,7 +137,7 @@ import geometry;
 
 % takes care of chess symbol black magic :)
 
-\input{chessBM}
+\RequirePackage{chessBM}
 
 % page setup
 
@@ -191,18 +191,26 @@ import geometry;
 
 % actual problems
 
-\newcommand{\prob}[3]{
-{\parindent=0pt
-{\robotofont\color{dennispurple}[#1\,\probSymb]\textbf{\if\relax\detokenize{#2}\else\hspace{3pt}(#2)\fi}}{\hspace{3pt}#3}
-\vspace{0.2cm}
+\newenvironment{prob}[2][]{
+\parindent=0pt
+{
+\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}
 }
+\hspace{-3pt}
+}
+{
+\vspace{0.2cm}
 }
 
-\newcommand{\req}[3]{
-{\parindent=0pt
-{\robotofont\color{importantred}[#1\,\reqSymb]\textbf{\if\relax\detokenize{#2}\else\hspace{3pt}(#2)\fi}}{\hspace{3pt}#3}
-\vspace{0.2cm}
+\newenvironment{req}[2][]{
+\parindent=0pt
+{
+\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}
 }
+\hspace{-3pt}
+}
+{
+\vspace{0.2cm}
 }
 
 %%%%%%%
