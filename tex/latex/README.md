@@ -30,7 +30,17 @@ For all of these styles (except the minimalist contest.sty), you will need
 	tikzMacros.tex
 	universal.tex
 
-chessBM.sty is not necessary for dennis.sty. I recommend you just import all of these and be done with it.
+chessBM.sty is not necessary for dennis.sty. I recommend you just import all of these and be done with it. If you want to use scrambled hints/solutions (thanks to Evan Chen for the original code), you must import
+
+	hintsol.sty
+	printhint.tex
+	printsol.tex
+
+and in any non-dennis style, you need to load it with
+
+	\usepackage{hintsol}
+
+If the document class is book, dennis will pass in hintsol for you.
 
 # Work in progress styles
 
