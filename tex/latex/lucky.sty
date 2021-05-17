@@ -1,5 +1,16 @@
 \ProvidesPackage{lucky}
 
+%%%%%%
+%OPTIONS%
+%%%%%%
+
+% booleans
+
+\newif\ifnumber\numberfalse
+
+\DeclareOption{mast}{\numbertrue} % numbers problems
+
+\ProcessOptions\relax
 
 %%%%%%%
 %ESSENTIALS%
@@ -163,55 +174,52 @@ import geometry;
 \end{flushright}
 }
 
-%\newcommand{\thickness}{1/60} % for convenience
-
-%\newcommand{\psetquote}[3]{% arguments are size, quote, author, in that order
-%{
-%\begin{flushright}
-%\begin{tikzpicture}
-%
-%\filldraw[color=lightpurple] (0,0)--(5/3*#1,0)--(2*#1,1/3*#1)--(2*#1,#1)--(1/3*#1,#1)--(0,2/3*#1)--cycle;
-%
-%\filldraw[color=dennispurple] (0,2/3*#1)--(1/3*#1,#1)--(0,#1)--cycle;
-%\filldraw[color=dennispurple] (5/3*#1,0)--(2*#1,1/3*#1)--(2*#1,0)--cycle;
-%
-%\filldraw[color=dennispurple] (0,0)--(\thickness*#1,0)--(\thickness*#1,#1)--(0,#1)--cycle;
-%\filldraw[color=dennispurple](2*#1,0)--(2*#1-\thickness*#1,0)--(2*#1-\thickness*#1,#1)--(2*#1,#1)--cycle;
-%\filldraw[color=dennispurple] (0,#1-\thickness*#1)--(0,#1)--(2*#1,#1)--(2*#1,#1-\thickness*#1)--cycle;
-%\filldraw[color=dennispurple] (0,\thickness*#1)--(0,0)--(2*#1,0)--(2*#1,\thickness*#1)--cycle;
-%
-%\node[text width=1.5*#1 cm] at (#1, 1/2 * #1) {%
-%\begin{hyphenrules}{nohyphenation}\small\robotofont``#2'' \\\hfill {\color{importantred}#3}\end{hyphenrules}%
-%};
-%
-%\end{tikzpicture}
-%\end{flushright}
-%}
-%}
-
 % actual problems
 
-\newenvironment{prob}[2][]{
-\parindent=0pt
-{
-\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}
-}
-\hspace{-3pt}
-}
-{
-\vspace{0.2cm}
-}
+\newcounter{problem}
+\setcounter{problem}{0}
 
-\newenvironment{req}[2][]{
-\parindent=0pt
-{
-\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}
+\RequirePackage{environ}
+
+\ifnumber
+
+\NewEnviron{prob}[2][]{
+{\parindent=0pt
+\stepcounter{problem}
+\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
-\hspace{-3pt}
-}
-{
+[
 \vspace{0.2cm}
+]
+
+\NewEnviron{req}[2][]{
+{\parindent=0pt
+\stepcounter{problem}
+\robotofont\color{importantred}[#2\,\reqSymb]\textbf{Problem \theproblem\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
+[
+\vspace{0.2cm}
+]
+
+\else
+
+\NewEnviron{prob}[2][]{
+{\parindent=0pt
+\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+}
+[
+\vspace{0.2cm}
+]
+
+\NewEnviron{req}[2][]{
+{\parindent=0pt
+\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+}
+[
+\vspace{0.2cm}
+]
+
+\fi
 
 %%%%%%%
 %THEOREMS%
