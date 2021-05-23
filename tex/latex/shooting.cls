@@ -23,7 +23,7 @@
 
 \setlength{\columnsep}{30pt}
 
-\input{universal}
+\RequirePackage{universal}
 
 \usepackage{newpxtext}
 \usepackage{newpxmath}
@@ -588,7 +588,5 @@ innerleftmargin=4pt
 \newcommand{\db}{\dbold}
 
 \newcommand{\ansbold}[1]{{\color{dpurp}\mathbf{#1}}}
-
-\input{tikzMacros}
 
 \newcommand{\problems}{\pagebreak\section{Problems}}
