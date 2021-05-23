@@ -143,7 +143,7 @@ import geometry;
 
 % chess font black magic i do not care to understand
 
-\input{chessBM}
+\usepackage{chessBM}
 
 \newcommand{\minpt}[1]{Minimum is {\color{dpurp}[#1\,\probSymb]}. Problems denoted with {\color{importantred}\reqSymb} are required. (They still count towards the point total.)}
 
@@ -182,22 +182,6 @@ import geometry;
 {
 \vspace{0.2cm}
 }
-
-% legacyyyy code
-
-%\newcommand{\prob}[3]{
-%{\parindent=0pt
-%{\robotofont\color{dpurp}[#1\,\probSymb]\textbf{\if\relax\detokenize{#2}\else\hspace{3pt}(#2)\fi}}{\hspace{3pt}#3}
-%\vspace{0.2cm}
-%}
-%}
-%
-%\newcommand{\req}[3]{
-%{\parindent=0pt
-%{\robotofont\color{importantred}[#1\,\reqSymb]\textbf{\if\relax\detokenize{#2}\else\hspace{3pt}(#2)\fi}}{\hspace{3pt}#3}
-%\vspace{0.2cm}
-%}
-%}
 
 %section
 
@@ -592,8 +576,6 @@ innerleftmargin=4pt
 \newcommand{\chapterquote}[2]{}
 
 \newcommand{\Item}{\item}
-
-\newcommand{\overarc}{\widehat} % overarc is so ugly anyways
 
 \definecolor{sangria}{rgb}{0.57, 0.0, 0.04} % EEG Cover
 
