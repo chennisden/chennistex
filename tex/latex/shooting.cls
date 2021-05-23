@@ -288,7 +288,7 @@ import geometry;
 \stepcounter{chapterid}
 \begin{tikzpicture}[remember picture,overlay,anchor = north west]
 \path (current page.north west) node[below right,fill=headpurp,minimum width=\paperwidth, minimum height=4cm] (box){};
-\path (current page.north west) node[below right,fill=dpurp,minimum width=\paperwidth, minimum height=0.4cm] (box){};
+\path (current page.north west) node[below right,fill=dpurp,minimum width=\paperwidth, minimum height=0.65cm] (box){};
 \coordinate (ur) at (\paperwidth-55,1.8+\dist);
 \path (ur) node[below left,fill=dpurp,minimum width=3cm, minimum height = 3cm](box){
 \scalebox{2}{\deffont\Huge\color{white}\bfseries\thechapter}
@@ -298,11 +298,11 @@ import geometry;
 \end{tikzpicture}
 }{0pt}{
 \begin{tikzpicture}[remember picture, overlay, anchor=south west]
-\node (chtext) at (0,1.65+\dist) {
+\node (chtext) at (0,1.75+\dist) {
 \parbox{15cm}{\begin{flushleft}\begin{hyphenrules}{nohyphenation}\newpx\chsize#1\end{hyphenrules}\end{flushleft}}
 };
 \end{tikzpicture}
-}[\vspace{3em}\label{\thechapterid}]
+}[\vspace{2em}\label{\thechapterid}]
 
 %\newcommand{\chapterquote}[2] % meh dont think this is any good
 %{
