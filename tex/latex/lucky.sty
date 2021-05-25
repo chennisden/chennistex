@@ -137,6 +137,7 @@ import geometry;
 % db to be dennispurple
 
 \newcommand{\db}[1]{{\color{dennispurple}\bfseries #1}}
+\newcommand{\dbold}[1]{\db{#1}}
 
 \RequirePackage{bm}
 
@@ -268,12 +269,12 @@ import geometry;
 {\thmname{#1}\thmnote{ #3}}
 
 \newtheoremstyle{solution}
-{5pt}
+{0pt}
 {0pt}
 {}
 {}
 {\color{importantred}\notofont\bfseries}
-{:}
+{.}
 {1.5mm}
 {\thmname{#1}\thmnote{ #3}}
 
@@ -364,7 +365,18 @@ leftline=true]{pro}{Proof}
 
 \theoremstyle{solution}
 
-\newtheorem{sol}{Solution}
+\newmdtheoremenv[
+nobreak=false,
+linecolor=importantred,
+linewidth=3pt,
+leftline=true,
+rightline=false,
+topline=false,
+bottomline=false,
+innertopmargin=3pt,
+innerbottommargin=3.5pt,
+innerleftmargin=7pt
+]{sol}{Solution}
 
 \newtheorem*{walk}{Walkthrough}
 
@@ -386,3 +398,5 @@ rightline=false,
 leftline=true]{remark}{Remark}
 
 \newenvironment{fact}{\begin{theo}}{\end{theo}}
+
+\newcommand{\answer}[5]{\vspace{0.2cm}\noindent$\textbf{(A)}\ #1 \qquad\textbf{(B)}\ #2 \qquad\textbf{(C)}\ #3 \qquad\textbf{(D)}\ #4 \qquad\textbf{(E)}\ #5$}
