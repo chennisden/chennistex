@@ -50,7 +50,6 @@ import geometry;
 \RequirePackage{fontawesome}
 \RequirePackage{marvosym}
 \RequirePackage{pifont}
-\RequirePackage{MnSymbol}
 \RequirePackage[skaknew]{skak}
 
 % useful operators
