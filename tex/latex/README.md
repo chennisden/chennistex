@@ -4,7 +4,6 @@ The finished styles are (in chronological order of creation)
 
 	dennis.sty
 	lucky.sty
-	contest.sty
 	shooting.cls
 	forest.sty
 
@@ -18,7 +17,7 @@ You may also want to know that forest.sty has a shooting option (since it was ea
 
 It just makes it look like an article version of shooting.
 
-If you read through the documentation of contest.sty, you will see that there is an option called "mat". __PLEASE DO NOT PASS IT IN,__ unless you are officially a member of MAC. Actually, I would appreciate it if you just did not use this style as-is. You are welcome to use it for REFERENCE in developing your own. If you would like to use the exact same STYLING, please make sure you strip any MAC/MAT branding, particularly in the logo (\titulate) and the footers. Please respect the brand we have built and make sure you do not misrepresent your documents as ours.
+The rest of the styles are dependencies because I do not want to copy paste code.
 
 # Mandatory imports
 
@@ -41,14 +40,6 @@ and in any non-dennis style, you need to load it with
 	\usepackage{hintsol}
 
 If the document class is book, dennis will pass in hintsol for you.
-
-# Work in progress styles
-
-lukoshenko.cls and mountain.sty are two black and white styles that I have not come close to finishing. Black and white design is hard and other people have already done it well, so I've decided to focus on other designs for a while.
-
-# Other people's styles
-
-dylanadi.sty is created by Dylan Yu. If you want the latest version, you should be seeing his GitHub, not mine. This is just so I can actually access it while turning my brain off between setups (I just need to pull this repo).
 
 # Legacy/deprecated styles
 

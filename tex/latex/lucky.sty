@@ -76,8 +76,13 @@ import geometry;
 \RequirePackage{pifont}
 \RequirePackage[skaknew]{skak}
 
+% angle fix
+
+\let\oldangle\angle
+\renewcommand{\angle}{\mathnormal{\oldangle}}
+
 % itemize symbols
-\renewcommand{\labelitemi}{$\filledmedsquare$}
+\renewcommand{\labelitemi}{$\blacksquare$}
 \renewcommand{\labelitemii}{\ding{70}}
 \renewcommand{\labelitemiii}{$\bullet$}
 
