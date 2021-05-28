@@ -1,0 +1,22 @@
+\RequirePackage{tikz}
+\RequirePackage{tkz-euclide}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{quotes}
+
+\usetikzlibrary{patterns}
+\usetikzlibrary{angles}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+\newcommand{\circleThickness}{1pt}
+\newcommand{\drawPointC}[3]{
+\coordinate (#3) at (#1);
+\filldraw (#1) circle (\circleThickness);
+\node at (#1) [anchor=#2]{$#3$};
+}
+\newcommand{\drawPoint}[3]{
+\filldraw (#1) circle (\circleThickness);
+\node at (#1) [anchor=#2]{$#3$};
+}
