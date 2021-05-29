@@ -166,8 +166,7 @@ import geometry;
 
 \newenvironment{prob}[2][]
 {\parindent=0pt
-\stepcounter{problem}
-{\robotofont\color{dpurp}[#2~\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
+{\robotofont\color{dpurp}[#2~\probSymb]\textbf{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
 }
 {
 \vspace{0.2cm}
@@ -175,8 +174,7 @@ import geometry;
 
 \newenvironment{req}[2][]
 {\parindent=0pt
-\stepcounter{problem}
-{\robotofont\color{importantred}[#2~\reqSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
+{\robotofont\color{importantred}[#2~\reqSymb]\textbf{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
 }
 {
 \vspace{0.2cm}
@@ -486,7 +484,7 @@ topline=false,
 bottomline=false,
 innertopmargin=3pt,
 innerbottommargin=3.5pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{pro}{Proof}
 
 \def\endpro{\hfill$\blacksquare$}
@@ -501,7 +499,7 @@ topline=false,
 bottomline=false,
 innertopmargin=3pt,
 innerbottommargin=3.5pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{sol}{Solution}
 
 \theoremstyle{remark}
@@ -516,7 +514,7 @@ topline=false,
 bottomline=false,
 innertopmargin=3pt,
 innerbottommargin=3.5pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{remark}{Remark}
 
 \theoremstyle{walk}
@@ -531,7 +529,7 @@ topline=false,
 bottomline=false,
 innertopmargin=2pt,
 innerbottommargin=4pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{walk}{Walkthrough}
 
 \renewcommand{\walk}{{\sffamily\color{emred}\bfseries Walkthrough:~}}

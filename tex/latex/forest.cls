@@ -256,7 +256,7 @@ import geometry;
 	{0pt}
 	{}
 	{}
-	{\color{accent}\sffamily\bfseries}
+	{\color{primary}\sffamily\bfseries}
 	{:}
 	{1.5mm}
 	{\thmname{#1}\thmnote{ #3}}
@@ -362,7 +362,7 @@ topline=false,
 bottomline=false,
 innertopmargin=3pt,
 innerbottommargin=3.5pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{pro}{Proof}
 
 \def\endpro{\hfill$\blacksquare$}
@@ -377,7 +377,7 @@ topline=false,
 bottomline=false,
 innertopmargin=3pt,
 innerbottommargin=3.5pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{sol}{Solution}
 
 \theoremstyle{remark}
@@ -392,7 +392,7 @@ topline=false,
 bottomline=false,
 innertopmargin=3pt,
 innerbottommargin=3.5pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{remark}{Remark}
 
 \theoremstyle{walk}
@@ -407,7 +407,7 @@ topline=false,
 bottomline=false,
 innertopmargin=2pt,
 innerbottommargin=4pt,
-innerleftmargin=4pt
+innerleftmargin=7pt
 ]{walk}{Walkthrough}
 
 \renewcommand{\walk}{{\sffamily\color{accent}\bfseries Walkthrough:~}}

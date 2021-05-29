@@ -2,16 +2,16 @@
 
 The finished styles are (in chronological order of creation)
 
-	dennis.sty
-	lucky.sty
+	dennis.cls
+	lucky.cls
 	shooting.cls
-	forest.sty
+	forest.cls
 
 If you are using shooting.cls, I strongly recommend passing in the onecol and blue options as such:
 
 	\documentclass[onecol, blue]{shooting}
 
-You may also want to know that forest.sty has a shooting option (since it was easy to implement):
+You may also want to know that forest.cls has a shooting option (since it was easy to implement):
 
 	\documentclass[shooting]{forest}
 
@@ -21,13 +21,13 @@ The rest of the styles are dependencies because I do not want to copy paste code
 
 # Mandatory imports
 
-For all of these styles (except the minimalist contest.sty), you will need
+For all of these styles, you will need
 
 	chessBM.sty
-	fonts.tex
-	mathOperators.tex
-	tikzMacros.tex
-	universal.tex
+	fonts.sty
+	mathOperators.sty
+	tikzMacros.sty
+	universal.sty
 
 chessBM.sty is not necessary for dennis.sty. I recommend you just import all of these and be done with it. If you want to use scrambled hints/solutions (thanks to Evan Chen for the original code), you must import
 
