@@ -3,6 +3,7 @@
 The finished styles are (in chronological order of creation)
 
 	dennis.cls
+	cv.cls
 	lucky.cls
 	shooting.cls
 	forest.cls
@@ -21,7 +22,9 @@ The rest of the styles are dependencies because I do not want to copy paste code
 
 # Mandatory imports
 
-For all of these styles, you will need
+Mandatory imports generally take the form of .sty files.
+
+For all of these classes (besides the minimalist cv), you will need
 
 	chessBM.sty
 	fonts.sty
