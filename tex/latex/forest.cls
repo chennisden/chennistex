@@ -165,23 +165,23 @@ import geometry;
 % problem
 % \end{prob}
 
-\newenvironment{prob}[2][]
-{\parindent=0pt
-\stepcounter{problem}
-{\robotofont\color{primary}[#2~\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
-}
-{
-\vspace{0.2cm}
-}
+\RequirePackage{environ}
 
-\newenvironment{req}[2][]
+\NewEnviron{prob}[2][]{
 {\parindent=0pt
-\stepcounter{problem}
-{\robotofont\color{accent}[#2~\reqSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
+\robotofont\color{primary}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
-{
+[
 \vspace{0.2cm}
+]
+
+\NewEnviron{req}[2][]{
+{\parindent=0pt
+\robotofont\color{accent}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
+[
+\vspace{0.2cm}
+]
 
 \newcommand{\minpt}[1]{Minimum is {\color{primary}[#1\,\probSymb]}. Problems with the\;{\color{accent}\reqSymb}\;symbol are required.
     \vspace{\baselineskip}

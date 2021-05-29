@@ -164,21 +164,23 @@ import geometry;
 \end{flushright}
 }
 
-\newenvironment{prob}[2][]
-{\parindent=0pt
-{\robotofont\color{dpurp}[#2~\probSymb]\textbf{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
-}
-{
-\vspace{0.2cm}
-}
+\RequirePackage{environ}
 
-\newenvironment{req}[2][]
+\NewEnviron{prob}[2][]{
 {\parindent=0pt
-{\robotofont\color{importantred}[#2~\reqSymb]\textbf{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}\hspace{-2pt}
+\robotofont\color{dpurp}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
-{
+[
 \vspace{0.2cm}
+]
+
+\NewEnviron{req}[2][]{
+{\parindent=0pt
+\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
+[
+\vspace{0.2cm}
+]
 
 %section
 
