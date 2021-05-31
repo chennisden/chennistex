@@ -1,9 +1,9 @@
 \ProvidesClass{lucky}
 \LoadClass{article}
 
-%%%%%%
+%%%%%%%%%
 %OPTIONS%
-%%%%%%
+%%%%%%%%%
 
 % booleans
 
@@ -13,9 +13,9 @@
 
 \ProcessOptions\relax
 
-%%%%%%%
+%%%%%%%%%%%%
 %ESSENTIALS%
-%%%%%%%
+%%%%%%%%%%%%
 
 \RequirePackage{asymptote}
 \begin{asydef}
@@ -36,7 +36,7 @@ import geometry;
 
 % universal
 
-\RequirePackage{universal}
+\RequirePackage{universal} % custom package created by Dennis Chen
 
 % hyperref
 
@@ -60,15 +60,15 @@ import geometry;
 \tableofcontents}
 }
 
-%%%%%%%%
+%%%%%%%%%%%%%
 %PAGE LAYOUT%
-%%%%%%%%
+%%%%%%%%%%%%%
 
 \RequirePackage[letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,includeheadfoot]{geometry} % geometry has to be BEFORE fancyhdr for margins to work!
 
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 %FONTS AND SYMBOLS%
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{newpxtext,newpxmath}
 
@@ -77,19 +77,14 @@ import geometry;
 \RequirePackage{pifont}
 \RequirePackage[skaknew]{skak}
 
-% angle fix
-
-\let\oldangle\angle
-\renewcommand{\angle}{\mathnormal{\oldangle}}
-
 % itemize symbols
 \renewcommand{\labelitemi}{$\blacksquare$}
 \renewcommand{\labelitemii}{\ding{70}}
 \renewcommand{\labelitemiii}{$\bullet$}
 
-%%%%%%
+%%%%%%%%
 %COLORS%
-%%%%%%
+%%%%%%%%
 
 \RequirePackage{xcolor}
 
@@ -107,9 +102,9 @@ import geometry;
 \definecolor{thmgreen}{RGB}{207,241,208}
 \definecolor{darkgreen}{RGB}{30,70,30}
 
-%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 %TITLE AND HEADERS%
-%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{etoolbox} % used for patchcmd
 
@@ -117,9 +112,9 @@ import geometry;
 \patchcmd{\@maketitle}{\@author}{\merri\@author}{}{}
 \patchcmd{\@maketitle}{\@date}{\merri\color{dennispurple}{\@date}}{}{}
 
-%%%%%%%%
+%%%%%%%%%%%%
 %SECTIONING%
-%%%%%%%%
+%%%%%%%%%%%%
 
 \RequirePackage{titlesec}
 
@@ -135,9 +130,9 @@ import geometry;
 \titleformat{\subsubsection}
 {\sffamily\normalsize\bfseries}{{\color{dennispurple}\thesubsubsection}}{0.9em}{}
 
-%%%%%
+%%%%%%
 %EMPH%
-%%%%%
+%%%%%%
 
 % db to be dennispurple
 
@@ -148,9 +143,9 @@ import geometry;
 
 \newcommand{\ansbold}[1]{{\color{dennispurple}\bm{#1}}}
 
-%%%%%%%
+%%%%%%%%%%
 %PROBLEMS%
-%%%%%%%
+%%%%%%%%%%
 
 % takes care of chess symbol black magic :)
 

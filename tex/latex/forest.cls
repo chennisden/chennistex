@@ -1,9 +1,9 @@
 \ProvidesClass{forest}
 \LoadClass{article}
 
-%%%%%%
+%%%%%%%%%
 %OPTIONS%
-%%%%%%
+%%%%%%%%%
 
 % Set booleans
 
@@ -15,9 +15,9 @@
 
 \ProcessOptions
 
-%%%%%%%
+%%%%%%%%%%%%
 %ESSENTIALS%
-%%%%%%%
+%%%%%%%%%%%%
 
 \RequirePackage{asymptote}
 \begin{asydef}
@@ -36,11 +36,11 @@ import geometry;
 \RequirePackage{amssymb,amsthm}
 \RequirePackage{mdframed}
 
-\RequirePackage{universal}
+\RequirePackage{universal} % custom package created by Dennis Chen
 
-%%%%%%
+%%%%%%%%
 %COLORS%
-%%%%%%
+%%%%%%%%
 
 \RequirePackage{xcolor}
 
@@ -72,9 +72,9 @@ import geometry;
 
 \RequirePackage[letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,includeheadfoot]{geometry} % geometry has to be BEFORE fancyhdr for margins to work!
 
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 %FONTS AND SYMBOLS%
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{newpxtext,newpxmath}
 \RequirePackage{fontawesome, pifont}
@@ -97,9 +97,9 @@ import geometry;
 \renewcommand{\labelitemii}{\ding{70}}
 \renewcommand{\labelitemiii}{$\bullet$}
 
-%%%%
+%%%%%
 %TOC%
-%%%%
+%%%%%
 
 \setcounter{tocdepth}{2}
 
@@ -127,9 +127,9 @@ import geometry;
 \pagebreak}
 }
 
-%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 %TITLE AND HEADERS%
-%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{etoolbox} % used for patchcmd
 
@@ -137,9 +137,9 @@ import geometry;
 \patchcmd{\@maketitle}{\@author}{\merri\@author}{}{}
 \patchcmd{\@maketitle}{\@date}{\merri\color{primary}{\@date}}{}{}
 
-%%%%%%%%
+%%%%%%%%%%%%
 %SECTIONING%
-%%%%%%%%
+%%%%%%%%%%%%
 
 \RequirePackage{titlesec}
 
@@ -155,9 +155,9 @@ import geometry;
 \titleformat{\subsubsection}
 {\sffamily\normalsize\bfseries}{{\color{primary}\thesubsubsection}}{0.9em}{}
 
-%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 %PROBLEM ENVIRONMENTS%
-%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 
 \newcounter{problem}\setcounter{problem}{0} % Problem number counter
 
@@ -206,9 +206,9 @@ import geometry;
 \end{flushright}
 }
 
-%%%%%%
+%%%%%%%%%
 %VISUALS%
-%%%%%%
+%%%%%%%%%
 
 \newcommand{\db}[1]{{\bfseries\color{accent}#1}}
 \newcommand{\dbold}[1]{\db{#1}}
@@ -217,9 +217,9 @@ import geometry;
 
 \newcommand{\problems}{\pagebreak\section{Problems}}
 
-%%%%%%%
+%%%%%%%%%%
 %THEOREMS%
-%%%%%%%
+%%%%%%%%%%
 
 \newtheoremstyle{dbox}
 	{0pt}
