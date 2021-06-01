@@ -326,9 +326,6 @@ import geometry;
 
 % nuclear symbol for chapters and sections; book only
 
-\newsavebox\CBox % lighter bold
-\def\lightBold#1{\sbox\CBox{#1}\resizebox{\wd\CBox}{\ht\CBox}{\textbf{#1}}}
-
 \titleformat{\part}[display]
             {\alegreyafont\bfseries\huge\filcenter}
             {\partname\ \thepart}
