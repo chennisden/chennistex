@@ -139,9 +139,7 @@ import geometry;
 \newcommand{\db}[1]{{\color{dennispurple}\bfseries #1}}
 \newcommand{\dbold}[1]{\db{#1}}
 
-\RequirePackage{bm}
-
-\newcommand{\ansbold}[1]{{\color{dennispurple}\bm{#1}}}
+\newcommand{\ansbold}[1]{{\color{dennispurple}\mathbf{#1}}}
 
 %%%%%%%%%%
 %PROBLEMS%
