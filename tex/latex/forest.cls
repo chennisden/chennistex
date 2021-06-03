@@ -159,8 +159,6 @@ import geometry;
 %PROBLEM ENVIRONMENTS%
 %%%%%%%%%%%%%%%%%%%%%%
 
-\newcounter{problem}\setcounter{problem}{0} % Problem number counter
-
 %usage: \begin{prob}[source]{points}
 % problem
 % \end{prob}
