@@ -1,5 +1,13 @@
 \ProvidesPackage{chessBM}
 
+% allow prob and req symbs not to be defined
+
+\newif\ifsymbs\symbstrue
+
+\DeclareOption{nosymb}{\symbsfalse}
+
+\ProcessOptions
+
 % chess black magic
 
 \RequirePackage[skaknew]{skak}
@@ -25,5 +33,9 @@
 \adjustbox{Trim=2pt 2pt 2pt 0pt,width=#1,raise=-0.06ex,margin=0.13ex 0ex 0.13ex 0ex}{\BlackKingOnWhite}%
 }%
 
+\ifsymbs
+
 \newcommand{\probSymb}{\pawnB}
 \newcommand{\reqSymb}{\knightB}
+
+\fi
