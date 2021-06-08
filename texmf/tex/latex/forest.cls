@@ -5,15 +5,25 @@
 %OPTIONS%
 %%%%%%%%%
 
-% Set booleans
+\RequirePackage{kvoptions}
 
-\newif\ifforest\foresttrue
+%   - xinttools (for zapping away spaces)
+\RequirePackage{xinttools}
 
-% Declare options
+\DeclareStringOption[forest]{theme}
 
-\DeclareOption{shooting}{\forestfalse} % makes it the shooting style -- blue, section symb changes, probsymb changes
+\ProcessKeyvalOptions*
 
-\ProcessOptions
+\edef\forest@theme{\expandafter\xintZapSpaces\expandafter\forest@theme} % zaps spaces
+
+\RequirePackage{ifallfalse} % package from the providers of bounce.cls
+
+\begin{allfalse}{\forest@theme}{ % throw error if \forest@theme matches neither forest or ocean
+	\ClassError{forest}{Invalid or no theme passed in}{Valid themes are forest, ocean}
+}
+	\orcheck{forest}
+	\orcheck{ocean}
+\end{allfalse}
 
 %%%%%%%%%%%%
 %ESSENTIALS%
@@ -46,27 +56,27 @@ import geometry;
 
 % These colors have their names chosen to explicitly enumerate what feelings they are supposed to evoke.
 
-\definecolor{forest}{HTML}{033c16}
-\definecolor{leaf}{HTML}{ccffbb}
-\definecolor{tanbark}{HTML}{640f0f}
+% Takes in palette name, palette color, HTML color code 
+%   Ex: \palettecolor{red}{primary}{696969}
+%     The first line defines the color redprimarycolor,
+%     The second line defines the command \@redprimary (so \@primary actually has something to refer to)
+%     The third line defines \@primary in this example,
+%     The fourth line defines \@primarycolor
 
-\definecolor{nblue}{HTML}{002896}
-\definecolor{bgblue}{HTML}{d2f0ff}
-\definecolor{emred}{HTML}{91000a}
+\def\palettecolor#1#2#3{
+    \definecolor{#1#2 color}{HTML}{#3}
+    \expandafter\def\csname @#1#2\endcsname{\color{#1#2 color}}
+    \expandafter\def\csname @#2\endcsname{\csname @\forest@theme #2\endcsname}
+    \expandafter\def\csname @#2color\endcsname{\forest@theme #2 color}
+}
 
-\ifforest
+\palettecolor{forest}{primary}{033c16}
+\palettecolor{forest}{alternate}{ccffbb}
+\palettecolor{forest}{accent}{640f0f}
 
-\colorlet{primary}{forest}
-\colorlet{alternate}{leaf}
-\colorlet{accent}{tanbark}
-
-\else
-
-\colorlet{primary}{nblue}
-\colorlet{alternate}{bgblue}
-\colorlet{accent}{emred}
-
-\fi
+\palettecolor{ocean}{primary}{002896}
+\palettecolor{ocean}{alternate}{d2f0ff}
+\palettecolor{ocean}{accent}{91000a}
 
 \definecolor{bggray}{HTML}{e6e6e6}
 
@@ -79,18 +89,26 @@ import geometry;
 \RequirePackage{newpxtext,newpxmath}
 \RequirePackage{fontawesome, pifont}
 
-\ifforest
+% section symbols
 
-\newcommand{\secSymb}{\faTree}
-\newcommand{\probSymb}{\faLeaf}
-\newcommand{\reqSymb}{\faTint}
+\def\@forestsec{\faTree}
+\def\@oceansec{\faGlobe}
 
-\else
+\def\@secsymb{\csname @\forest@theme sec\endcsname}
 
-\newcommand{\secSymb}{\faGlobe}
-\RequirePackage{chessBM}
+% problem symbols
 
-\fi
+\RequirePackage[nosymb]{chessBM} % do not auto define prob and req symbs
+
+\def\@forestprob{\faLeaf}
+\def\@oceanprob{\pawnB}
+
+\def\@probsymb{\csname @\forest@theme prob\endcsname}
+
+\def\@forestreq{\faTint}
+\def\@oceanreq{\kinghtB}
+
+\def\@reqsymb{\csname @\forest@theme req\endcsname}
 
 % itemize symbols
 \renewcommand{\labelitemi}{$\blacksquare$}
@@ -108,14 +126,14 @@ import geometry;
     colorlinks,
     citecolor=black,
     filecolor=black,
-    linkcolor=primary,
-    urlcolor=primary
+    linkcolor=\@primarycolor,
+    urlcolor=\@primarycolor
 }
 
-\usepackage{tocloft}
+\RequirePackage{tocloft}
 
 \renewcommand{\cfttoctitlefont}{\merri\bfseries\LARGE}
-\renewcommand{\cftsecfont}{\hypersetup{linkcolor=primary}\notofont\bfseries\large\color{primary}}
+\renewcommand{\cftsecfont}{\hypersetup{linkcolor=\@primarycolor}\notofont\bfseries\large\@primary}
 \renewcommand{\cftsubsecfont}{\tlffont}
 
 % shorthand for toc; prevent everything from being blue or whatever
@@ -133,9 +151,9 @@ import geometry;
 
 \RequirePackage{etoolbox} % used for patchcmd
 
-\patchcmd{\@maketitle}{\@title}{\merri\color{primary}\bfseries\@title}{}{}
+\patchcmd{\@maketitle}{\@title}{\merri\@primary\bfseries\@title}{}{}
 \patchcmd{\@maketitle}{\@author}{\merri\@author}{}{}
-\patchcmd{\@maketitle}{\@date}{\merri\color{primary}{\@date}}{}{}
+\patchcmd{\@maketitle}{\@date}{\merri\@primary\@date}{}{}
 
 %%%%%%%%%%%%
 %SECTIONING%
@@ -144,16 +162,16 @@ import geometry;
 \RequirePackage{titlesec}
 
 \titleformat{\section}
-{\notofont\Large\bfseries}{{\color{primary}\secSymb\,\thesection}}{0.8em}{}
+{\notofont\Large\bfseries}{{\@primary\@secsymb\,\thesection}}{0.8em}{}
 
 % subsections
 \titleformat{\subsection}
-{\sffamily\large\bfseries}{{\color{primary}\thesubsection}}{0.9em}{}
+{\sffamily\large\bfseries}{{\@primary\thesubsection}}{0.9em}{}
 
 %subsubsections (just in case!)
 
 \titleformat{\subsubsection}
-{\sffamily\normalsize\bfseries}{{\color{primary}\thesubsubsection}}{0.9em}{}
+{\sffamily\normalsize\bfseries}{{\@primary\thesubsubsection}}{0.9em}{}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %PROBLEM ENVIRONMENTS%
@@ -167,7 +185,7 @@ import geometry;
 
 \NewEnviron{prob}[2][]{
 {\parindent=0pt
-\robotofont\color{primary}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\robotofont\@primary[#2\,\@probsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
 [
 \vspace{0.2cm}
@@ -175,13 +193,13 @@ import geometry;
 
 \NewEnviron{req}[2][]{
 {\parindent=0pt
-\robotofont\color{accent}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\robotofont\@accent[#2\,\@reqsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
 }
 [
 \vspace{0.2cm}
 ]
 
-\newcommand{\minpt}[1]{Minimum is {\color{primary}[#1\,\probSymb]}. Problems with the\;{\color{accent}\reqSymb}\;symbol are required.
+\newcommand{\minpt}[1]{Minimum is {\@primary[#1\,\@probsymb]}. Problems with the\;{\@accent\@reqsymb}\;symbol are required.
     \vspace{\baselineskip}
 }
 
@@ -191,12 +209,12 @@ import geometry;
 \begin{flushright}
 \begin{tikzpicture}
 \draw (0,0) node [right,text width=8.75cm]{
-\begin{mdframed}[linecolor=primary,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=alternate]
+\begin{mdframed}[linecolor=\@primarycolor,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=\@alternatecolor]
 {\alegreyafont``#1''}
 
 \vspace{1mm}
 
-\hfill\color{accent}\fell#2
+\hfill\@accent\fell#2
 \end{mdframed}
 };
 
@@ -208,10 +226,10 @@ import geometry;
 %VISUALS%
 %%%%%%%%%
 
-\newcommand{\db}[1]{{\bfseries\color{accent}#1}}
+\newcommand{\db}[1]{{\bfseries\@accent#1}}
 \newcommand{\dbold}[1]{\db{#1}}
 
-\newcommand{\ansbold}[1]{{\color{accent}\mathbf{#1}}}
+\newcommand{\ansbold}[1]{{\@accent\mathbf{#1}}}
 
 \newcommand{\problems}{\pagebreak\section{Problems}}
 
@@ -224,7 +242,7 @@ import geometry;
 	{2pt}
 	{}
 	{}
-	{\color{primary}\cha\bfseries}
+	{\@primary\cha\bfseries}
 	{}
 	{\newline}
 	{\vspace{1.5pt}\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}
@@ -234,7 +252,7 @@ import geometry;
 	{0pt}
 	{}
 	{}
-	{\color{accent}\sffamily\bfseries}
+	{\@accent\sffamily\bfseries}
 	{:}
 	{4pt}
 	{\thmname{#1}\thmnote{ #3}}
@@ -244,7 +262,7 @@ import geometry;
 	{0pt}
 	{}
 	{}
-	{\color{accent}\sffamily\bfseries}
+	{\@accent\sffamily\bfseries}
 	{:}
 	{0pt}
 	{\thmname{#1}\thmnote{ #3}}
@@ -254,7 +272,7 @@ import geometry;
 	{0pt}
 	{}
 	{}
-	{\color{primary}\sffamily\bfseries}
+	{\@primary\sffamily\bfseries}
 	{:}
 	{1.5mm}
 	{\thmname{#1}\thmnote{ #3}}
@@ -262,9 +280,9 @@ import geometry;
 \theoremstyle{dbox}
 
 \newmdtheoremenv[% settings
-backgroundcolor=alternate,
+backgroundcolor=\@alternatecolor,
 nobreak=true,
-linecolor=primary,
+linecolor=\@primarycolor,
 linewidth=0.6pt,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -277,7 +295,7 @@ leftline=true]{theo}{Theorem}[section]
 \newmdtheoremenv[% settings
 backgroundcolor=bggray,
 nobreak=true,
-linecolor=primary,
+linecolor=\@primarycolor,
 linewidth=2pt,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -290,7 +308,7 @@ leftline=true]{defi}[theo]{Definition}
 \newmdtheoremenv[% settings
 backgroundcolor=bggray,
 nobreak=true,
-linecolor=primary,
+linecolor=\@primarycolor,
 linewidth=2pt,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -302,7 +320,7 @@ leftline=true]{fact}[theo]{Fact}
 
 \newmdtheoremenv[% settings
 nobreak=true,
-linecolor=primary,
+linecolor=\@primarycolor,
 linewidth=0.6pt,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -314,7 +332,7 @@ leftline=true]{exam}[theo]{Example}
 
 \newmdtheoremenv[% settings
 nobreak=true,
-linecolor=primary,
+linecolor=\@primarycolor,
 linewidth=0.6pt,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -325,7 +343,7 @@ rightline=true,
 leftline=true]{exer}[theo]{Exercise}
 
 \newmdtheoremenv[% settings
-backgroundcolor=alternate,
+backgroundcolor=\@alternatecolor,
 nobreak=true,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -336,7 +354,7 @@ rightline=false,
 leftline=false]{lemma}[theo]{Lemma}
 
 \newmdtheoremenv[% settings
-backgroundcolor=alternate,
+backgroundcolor=\@alternatecolor,
 nobreak=true,
 innerleftmargin=7pt,
 innerrightmargin=7pt,
@@ -346,13 +364,13 @@ bottomline=false,
 rightline=false,
 leftline=false]{corollary}[theo]{Corollary}
 
-\usepackage{pgf}
+\RequirePackage{pgf}
 
 \theoremstyle{proof}
 
 \newmdtheoremenv[
 nobreak=false,
-linecolor=accent,
+linecolor=\@accentcolor,
 linewidth=1pt,
 leftline=true,
 rightline=false,
@@ -367,7 +385,7 @@ innerleftmargin=7pt
 
 \newmdtheoremenv[
 nobreak=false,
-linecolor=accent,
+linecolor=\@accentcolor,
 linewidth=1pt,
 leftline=true,
 rightline=false,
@@ -382,7 +400,7 @@ innerleftmargin=7pt
 
 \newmdtheoremenv[
 nobreak=false,
-linecolor=primary,
+linecolor=\@primarycolor,
 linewidth=1pt,
 leftline=true,
 rightline=false,
@@ -397,7 +415,7 @@ innerleftmargin=7pt
 
 \newmdtheoremenv[
 nobreak=false,
-linecolor=accent,
+linecolor=\@accentcolor,
 linewidth=1pt,
 leftline=true,
 rightline=false,
@@ -408,4 +426,4 @@ innerbottommargin=4pt,
 innerleftmargin=7pt
 ]{walk}{Walkthrough}
 
-\renewcommand{\walk}{{\sffamily\color{accent}\bfseries Walkthrough:~}}
+\renewcommand{\walk}{{\sffamily\@accent\bfseries Walkthrough:~}}
