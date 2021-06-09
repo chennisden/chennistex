@@ -181,23 +181,23 @@ import geometry;
 % problem
 % \end{prob}
 
-\RequirePackage{environ}
-
-\NewEnviron{prob}[2][]{
+\newenvironment{prob}[2][]{
 {\parindent=0pt
-\robotofont\@primary[#2\,\@probsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\raggedright
+\robotofont\@primary[#2\,\@probsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
-[
+{
 \vspace{0.2cm}
-]
+}
 
-\NewEnviron{req}[2][]{
+\newenvironment{req}[2][]{
 {\parindent=0pt
-\robotofont\@accent[#2\,\@reqsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\raggedright
+\robotofont\@accent[#2\,\@reqsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
-[
+{
 \vspace{0.2cm}
-]
+}
 
 \newcommand{\minpt}[1]{Minimum is {\@primary[#1\,\@probsymb]}. Problems with the\;{\@accent\@reqsymb}\;symbol are required.
     \vspace{\baselineskip}
