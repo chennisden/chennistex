@@ -14,11 +14,11 @@
 
 \ProcessKeyvalOptions*
 
-\edef\forest@theme{\expandafter\xintZapSpaces\expandafter\forest@theme} % zaps spaces
+\edef\nature@theme{\expandafter\xintZapSpaces\expandafter\nature@theme} % zaps spaces
 
 \RequirePackage{ifallfalse} % package from the providers of bounce.cls
 
-\begin{allfalse}{\forest@theme}{ % throw error if \forest@theme matches neither forest or ocean
+\begin{allfalse}{\nature@theme}{ % throw error if \nature@theme matches neither forest or ocean
 	\ClassError{forest}{Invalid or no theme passed in}{Valid themes are forest, ocean}
 }
 	\orcheck{forest}
@@ -66,8 +66,8 @@ import geometry;
 \def\palettecolor#1#2#3{
     \definecolor{#1#2 color}{HTML}{#3}
     \expandafter\def\csname @#1#2\endcsname{\color{#1#2 color}}
-    \expandafter\def\csname @#2\endcsname{\csname @\forest@theme #2\endcsname}
-    \expandafter\def\csname @#2color\endcsname{\forest@theme #2 color}
+    \expandafter\def\csname @#2\endcsname{\csname @\nature@theme #2\endcsname}
+    \expandafter\def\csname @#2color\endcsname{\nature@theme #2 color}
 }
 
 \palettecolor{forest}{primary}{033c16}
@@ -94,7 +94,7 @@ import geometry;
 \def\@forestsec{\faTree}
 \def\@oceansec{\faGlobe}
 
-\def\@secsymb{\csname @\forest@theme sec\endcsname}
+\def\@secsymb{\csname @\nature@theme sec\endcsname}
 
 % problem symbols
 
@@ -103,12 +103,12 @@ import geometry;
 \def\@forestprob{\faLeaf}
 \def\@oceanprob{\pawnB}
 
-\def\@probsymb{\csname @\forest@theme prob\endcsname}
+\def\@probsymb{\csname @\nature@theme prob\endcsname}
 
 \def\@forestreq{\faTint}
 \def\@oceanreq{\knightB}
 
-\def\@reqsymb{\csname @\forest@theme req\endcsname}
+\def\@reqsymb{\csname @\nature@theme req\endcsname}
 
 % itemize symbols
 \renewcommand{\labelitemi}{$\blacksquare$}
