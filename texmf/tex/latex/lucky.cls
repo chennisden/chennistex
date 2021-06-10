@@ -178,51 +178,53 @@ import geometry;
 \newcounter{problem}
 \setcounter{problem}{0}
 
-\RequirePackage{environ}
-
 \ifnumber
 
-\NewEnviron{prob}[2][]{
+\newenvironment{prob}[2][]{
 {\parindent=0pt
+\raggedright
 \stepcounter{problem}
-\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
-[
+{
 \vspace{0.2cm}
-]
+}
 
-\NewEnviron{req}[2][]{
+\newenvironment{req}[2][]{
 {\parindent=0pt
+\raggedright
 \stepcounter{problem}
-\robotofont\color{importantred}[#2\,\reqSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\robotofont\color{importantred}[#2\,\reqSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
-[
+{
 \vspace{0.2cm}
-]
+}
 
 \else
 
-\NewEnviron{prob}[2][]{
+\newenvironment{prob}[2][]{
 {\parindent=0pt
-\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\raggedright
+\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
-[
+{
 \vspace{0.2cm}
-]
+}
 
-\NewEnviron{req}[2][]{
+\newenvironment{req}[2][]{
 {\parindent=0pt
-\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\BODY
+\raggedright
+\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
-[
+{
 \vspace{0.2cm}
-]
+}
 
 \fi
 
-%%%%%%%
+%%%%%%%%%%
 %THEOREMS%
-%%%%%%%
+%%%%%%%%%%
 
 % theorem styles
 

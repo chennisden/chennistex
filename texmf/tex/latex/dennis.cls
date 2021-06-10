@@ -95,25 +95,27 @@ import geometry;
 % pls use this in the future
 
 \newenvironment{prob}[2][]
-{\parindent=0pt % before
-\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}\hspace{-3pt}
+{\parindent=0pt
+\raggedright
+\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}\hspace{3.5pt}\ignorespaces
 }
-{ % after
+{
 \vspace{0.2cm}
 }
 
 \newenvironment{req}[2][]
-{\parindent=0pt % before
-\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faDiamond]} \textbf{{\color{sangria}Problem \theproblem}}{\textbf{{\color{sangria}\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}}\hspace{-3pt}
+{\parindent=0pt
+\raggedright
+\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faDiamond]} \textbf{{\color{sangria}Problem \theproblem}}{\textbf{{\color{sangria}\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}}\hspace{3.5pt}\ignorespaces
 }
-{ % after
+{
 \vspace{0.2cm}
 }
 
 \newcommand{\minpt}[1]{Minimum is {\color{sangria}[#1\,\faPencil]}. Problems with the {\color{sangria}\faDiamond} symbol are required.
     \vspace{\baselineskip}
 }
-% Specifies minimum amount of points to complete a unit
+% Specifies minimum amount of points for completion
 
 \RequirePackage{soul}
 
