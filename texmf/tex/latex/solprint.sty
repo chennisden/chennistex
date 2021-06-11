@@ -1,0 +1,76 @@
+\ProvidesPackage{solprint}
+
+% counter for sol files
+\newcounter{solfiles}
+\setcounter{solfiles}{0}
+
+% - Options
+%   Used to change the default environment name in case of conflicts
+
+\RequirePackage{kvoptions}
+
+\DeclareStringOption[solu]{envname}
+\DeclareBoolOption[false]{showsol}
+
+\ProcessKeyvalOptions*
+
+\RequirePackage{fancyvrb} % provides the VerbatimOut environment
+\RequirePackage{fvextra} % patches fancyverb
+
+% Initialize solprint@title
+% Set up mechanism to reset soltitle
+% titledefined checks whether title is defined
+% 0 means undefined, 1 means definde
+% Used to throw errors
+
+\def\resetsoltitle{
+    \let\solprint@title\relax
+    \gdef\titledefined{0}
+    }
+\resetsoltitle % Users are expected to put this in the appropriate
+% location in their own classes or packages
+% in order to correctly provide error reporting. 
+
+% define env based on envname passed in
+\newenvironment{\solprint@envname}
+{
+    \stepcounter{solfiles}
+    \expandafter\xdef\csname solprint@title\thesolfiles\endcsname{\solprint@title}
+
+    \ifnum\titledefined=0
+        % Throw an error if \solprint@title is undefined
+        % This is done for user convenience
+        \PackageError{solprint}{The environment ``\solprint@envname'' must be in an environment that handles solutions}{Developers should see \protect\soltitle and \protect\resetsoltitle in the package documentation.}
+    \fi
+    \VerbatimOut{\jobname-\thesolfiles.sol}% need % here because VerbatimOut behaves weirdly with spaces
+}
+{
+    \endVerbatimOut
+}
+
+\newcommand\soltitle[2][Solution to]
+{% we add comments after lines
+    \gdef\titledefined{1}% so extraneous spaces
+    \gdef\solprint@title{#1 #2}{#2\ignorespaces}% are not added
+}
+
+\newcommand\solutionstitle{Solutions} % allows people to renewcommand
+
+% Includes all sol files in order
+
+\ifsolprint@showsol
+\newcommand\solprint[1][\jobname]{
+    \section{\solutionstitle}
+    \foreach \i in {1, ..., \thesolfiles} {
+        \def\temp@title{\csname solprint@title\i\endcsname}
+        \edef\sol@filename{#1-\i.sol}% Comments are needed
+        \IfFileExists{\sol@filename}{% To eliminate any spaces
+        % That follow the ends of the lines
+            \subsection{\temp@title}
+            \input{\sol@filename}
+        }{}
+    }
+}
+\else
+\newcommand\solprint{}
+\fi
