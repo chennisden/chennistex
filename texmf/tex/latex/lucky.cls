@@ -184,7 +184,7 @@ import geometry;
 {\parindent=0pt
 \raggedright
 \stepcounter{problem}
-\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{\soltitle{Problem \theproblem\if\relax\detokenize{#1}\else~(#1)\fi}}}\hspace{3.5pt}\ignorespaces
+\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{\soltitle{Problem \theproblem\if\relax\detokenize{#1}\else{} (#1)\fi}}}\hspace{3.5pt}\ignorespaces
 }
 {
 \vspace{0.2cm}
@@ -194,7 +194,7 @@ import geometry;
 {\parindent=0pt
 \raggedright
 \stepcounter{problem}
-\robotofont\color{importantred}[#2\,\reqSymb]\;\textbf{\soltitle{Problem \theproblem\if\relax\detokenize{#1}\else~(#1)\fi}}}\hspace{3.5pt}\ignorespaces
+\robotofont\color{importantred}[#2\,\reqSymb]\;\textbf{\soltitle{Problem \theproblem\if\relax\detokenize{#1}\else{} (#1)\fi}}}\hspace{3.5pt}\ignorespaces
 }
 {
 \vspace{0.2cm}

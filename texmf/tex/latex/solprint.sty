@@ -56,6 +56,9 @@
         \string\expandafter\string\xdef\noexpand\csname solprint@title\thesolfiles\string\endcsname{\solprint@envtitle}
     }
 
+    % creates refs for hyperlinks (used only if file is source)
+    \label{solu:\thesolfiles}
+
     \ifnum\titledefined=0
         % Throw an error if \solprint@envtitle is undefined
         % This is done for user convenience
@@ -69,8 +72,27 @@
 
 % Define titles for solprint as to make it easier to customize
 
-\newcommand{\solprint@title}{\section{Solutions}}
-\newcommand{\solprint@subtitle}[1]{\subsection{#1}}
+\newcommand{\solprint@title}{
+    \ifsource
+    \section{Solutions}
+    \else
+        \maketitle
+
+        \ifdefined\toc % we expect people to use \toc
+        \else
+            \newcommand{\toc}{\newpage\tableofcontents\newpage}
+        \fi
+
+        \toc
+    \fi
+}
+\newcommand{\solprint@subtitle}[1]{
+    \ifsource    
+        \subsection{#1}
+    \else
+        \section{#1}
+    \fi
+}
 
 % Includes all sol files in order
 
@@ -78,6 +100,13 @@
 \newcommand\solprint[1][\jobname]{
 
     % defines the file to look for solutions to be the optional argument
+
+    % checks if file is source of the problems and solutions
+
+    \ifnum\pdfstrcmp{#1}{\jobname}=0
+    \else
+        \sourcefalse
+    \fi
 
     \immediate\write\@auxout{\string\gdef\string\sol@prefix{#1}}
 
@@ -88,15 +117,10 @@
             \edef\sol@filename{#1-\i.sol}% Comments are needed
             \IfFileExists{\sol@filename}{% To eliminate any spaces
                 % That follow the ends of the lines
-                \solprint@subtitle{\temp@title}
+                \solprint@subtitle{\hyperref[solu:\thesolfiles]{\temp@title}}
                 \input{\sol@filename}
             }{}
         }
-    \fi
-
-    \ifnum\pdfstrcmp{#1}{\jobname}=0
-    \else
-        \sourcefalse
     \fi
 }
 \else
