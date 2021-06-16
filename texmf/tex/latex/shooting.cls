@@ -10,11 +10,11 @@
 \ProcessOptions\relax
 
 \iftwocol
-\newcommand\dist{0}
-\LoadClass[twocolumn,openany]{book}
+	\newcommand\dist{0}
+	\LoadClass[twocolumn,openany]{book}
 \else
-\newcommand\dist{0.5}
-\LoadClass[openany]{book}
+	\newcommand\dist{0.5}
+	\LoadClass[openany]{book}
 \fi
 
 \RequirePackage[letterpaper,top=2cm,bottom=2cm,left=1.5cm,right=1.5cm,includeheadfoot]{geometry}
@@ -37,10 +37,10 @@
 \usepackage{asymptote}
 
 \begin{asydef}
-size(6cm);
-import olympiad;
-import cse5;
-import geometry;
+	size(6cm);
+	import olympiad;
+	import cse5;
+	import geometry;
 \end{asydef}
 
 \usepackage{amsthm,amssymb}
@@ -91,22 +91,22 @@ import geometry;
 
 \ifpurp
 
-\definecolor{headpurp}{RGB}{240,230,250}
+	\definecolor{headpurp}{RGB}{240,230,250}
 
-\definecolor{bgpurp}{RGB}{250,230,250}
+	\definecolor{bgpurp}{RGB}{250,230,250}
 
-\definecolor{npurp}{RGB}{125,50,125}
+	\definecolor{npurp}{RGB}{125,50,125}
 
-\definecolor{dpurp}{RGB}{110,45,110}
+	\definecolor{dpurp}{RGB}{110,45,110}
 \else % blue
 
-\definecolor{headpurp}{RGB}{200,230,255}
+	\definecolor{headpurp}{RGB}{200,230,255}
 
-\definecolor{bgpurp}{RGB}{210,240,255}
+	\definecolor{bgpurp}{RGB}{210,240,255}
 
-\definecolor{npurp}{RGB}{0,40,150}
+	\definecolor{npurp}{RGB}{0,40,150}
 
-\definecolor{dpurp}{RGB}{0, 25, 100}
+	\definecolor{dpurp}{RGB}{0, 25, 100}
 \fi
 
 \definecolor{emred}{rgb}{0.57,0.0,0.04}
@@ -134,10 +134,10 @@ import geometry;
 \renewcommand*\contentsname{Table of Contents}
 
 \newcommand{\toc}{
-{\hypersetup{linkcolor=black}
-\tableofcontents
-\pagebreak
-}
+	{\hypersetup{linkcolor=black}
+			\tableofcontents
+			\pagebreak
+		}
 }
 
 % chess font black magic i do not care to understand
@@ -148,38 +148,38 @@ import geometry;
 
 \newcommand{\psetquote}[2] % BE CAREFUL WITH THIS. must be DIRECTLY after minpt
 {
-\begin{flushright}
-\begin{tikzpicture}
-\draw (0,0) node [right,text width=8.75cm]{
-\begin{mdframed}[linecolor=dpurp,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=bgpurp]
-{\alegreyafont``#1''}
+	\begin{flushright}
+		\begin{tikzpicture}
+			\draw (0,0) node [right,text width=8.75cm]{
+				\begin{mdframed}[linecolor=dpurp,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=bgpurp]
+					{\alegreyafont``#1''}
 
-\vspace{1mm}
+					\vspace{1mm}
 
-\hfill\color{importantred}\fell#2
-\end{mdframed}
-};
+					\hfill\color{importantred}\fell#2
+				\end{mdframed}
+			};
 
-\end{tikzpicture}
-\end{flushright}
+		\end{tikzpicture}
+	\end{flushright}
 }
 
 \newenvironment{prob}[2][]{
-{\parindent=0pt
-\raggedright
-\robotofont\color{dpurp}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
+	{\parindent=0pt
+			\raggedright
+			\robotofont\color{dpurp}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
 {
-\vspace{0.2cm}
+	\vspace{0.2cm}
 }
 
 \newenvironment{req}[2][]{
-{\parindent=0pt
-\raggedright
-\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
+	{\parindent=0pt
+			\raggedright
+			\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
 {
-\vspace{0.2cm}
+	\vspace{0.2cm}
 }
 
 %section
@@ -207,38 +207,38 @@ import geometry;
 
 \usepackage{etoolbox}
 \patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}
-  {}{\errmessage{Cannot patch \string\part}}
+{}{\errmessage{Cannot patch \string\part}}
 
 \titleformat{\part}{}{}{0em}{
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture, overlay]
-\coordinate (A) at ($(current page.center)+(0-\pl*1/2-\pshift,\vs+\pw*1/2-\pshift)$);
-\coordinate (B) at ($(current page.center)+(0-\pl*1/2-\pshift,\vs-\pw*1/2-2*\pshift)$);
-\coordinate (C) at ($(current page.center)+(\pl*1/2-\pshift,\vs-\pw*1/2-\pshift)$);
-%
-\coordinate (L) at ($(current page.center)+(0-\pl*1/2-2*\pshift,\vs+\pw*1/2-2*\pshift)$);
-\coordinate (M) at ($(current page.center)+(0-\pl*1/2-2*\pshift,\vs-\pw*1/2-\pshift)$);
-\coordinate (N) at ($(current page.center)+(\pl*1/2-2*\pshift,\vs-\pw*1/2-2*\pshift)$);
-%
-\draw (A)--(B)--(N);
-\draw (L)--(M)--(C);
-%
-\coordinate (D) at ($(current page.center)+(0-\pl*1/2+\pshift,\vs+\pw*1/2+\pshift)$);
-\coordinate (E) at ($(current page.center)+(\pl*1/2+\pshift,\vs+\pw*1/2+2*\pshift)$);
-\coordinate (F) at ($(current page.center)+(\pl*1/2+\pshift,\vs-\pw*1/2+\pshift)$);
-%
-\coordinate (P) at ($(current page.center)+(0-\pl*1/2+2*\pshift,\vs+\pw*1/2+2*\pshift)$);
-\coordinate (Q) at ($(current page.center)+(\pl*1/2+2*\pshift,\vs+\pw*1/2+\pshift)$);
-\coordinate (R) at ($(current page.center)+(\pl*1/2+2*\pshift,\vs-\pw*1/2+2*\pshift)$);
-%
-\draw (P)--(E)--(F);
-\draw (D)--(Q)--(R);
-\node at ($(current page.center)+(0,\vs)$)[align=center]{
-\\[1\baselineskip]
-{\partsize\partname\;\thepart}\\[2.5\baselineskip]
-{\smallpartsize#1}
-};
-\end{tikzpicture}%
+	\thispagestyle{empty}
+	\begin{tikzpicture}[remember picture, overlay]
+		\coordinate (A) at ($(current page.center)+(0-\pl*1/2-\pshift,\vs+\pw*1/2-\pshift)$);
+		\coordinate (B) at ($(current page.center)+(0-\pl*1/2-\pshift,\vs-\pw*1/2-2*\pshift)$);
+		\coordinate (C) at ($(current page.center)+(\pl*1/2-\pshift,\vs-\pw*1/2-\pshift)$);
+		%
+		\coordinate (L) at ($(current page.center)+(0-\pl*1/2-2*\pshift,\vs+\pw*1/2-2*\pshift)$);
+		\coordinate (M) at ($(current page.center)+(0-\pl*1/2-2*\pshift,\vs-\pw*1/2-\pshift)$);
+		\coordinate (N) at ($(current page.center)+(\pl*1/2-2*\pshift,\vs-\pw*1/2-2*\pshift)$);
+		%
+		\draw (A)--(B)--(N);
+		\draw (L)--(M)--(C);
+		%
+		\coordinate (D) at ($(current page.center)+(0-\pl*1/2+\pshift,\vs+\pw*1/2+\pshift)$);
+		\coordinate (E) at ($(current page.center)+(\pl*1/2+\pshift,\vs+\pw*1/2+2*\pshift)$);
+		\coordinate (F) at ($(current page.center)+(\pl*1/2+\pshift,\vs-\pw*1/2+\pshift)$);
+		%
+		\coordinate (P) at ($(current page.center)+(0-\pl*1/2+2*\pshift,\vs+\pw*1/2+2*\pshift)$);
+		\coordinate (Q) at ($(current page.center)+(\pl*1/2+2*\pshift,\vs+\pw*1/2+\pshift)$);
+		\coordinate (R) at ($(current page.center)+(\pl*1/2+2*\pshift,\vs-\pw*1/2+2*\pshift)$);
+		%
+		\draw (P)--(E)--(F);
+		\draw (D)--(Q)--(R);
+		\node at ($(current page.center)+(0,\vs)$)[align=center]{
+		\\[1\baselineskip]
+		{\partsize\partname\;\thepart}\\[2.5\baselineskip]
+		{\smallpartsize#1}
+		};
+	\end{tikzpicture}%
 }
 
 \newlength{\mylen}
@@ -248,27 +248,27 @@ import geometry;
 
 \iftwocol
 \titleformat{\section}{\notofont\Large\bfseries}{}{0em}{
-\hspace{-12pt}
-\settowidth{\mylen}{\thesection}
-\begin{tikzpicture}[ anchor = south west]
-\node at (0,0) {\color{npurp}\Circled{\thesection}};
-\node at (\mylen*1.1+12,0.86) [text width = 8cm,anchor=north west]{
-{#1}
-};
-\end{tikzpicture}
+	\hspace{-12pt}
+	\settowidth{\mylen}{\thesection}
+	\begin{tikzpicture}[ anchor = south west]
+		\node at (0,0) {\color{npurp}\Circled{\thesection}};
+		\node at (\mylen*1.1+12,0.86) [text width = 8cm,anchor=north west]{
+			{#1}
+		};
+	\end{tikzpicture}
 }[\vspace{-0.9cm}]
 \else
 \titleformat{\section}{\notofont\Large\bfseries}{}{-0.9em}{
-\settowidth{\mylen}{\thesection}
-\begin{tikzpicture}[ anchor = south west]
-\node at (0,0) {\color{npurp}\Circled{\thesection}};
-\node at (\mylen*1.1+12,0.86) [text width=17cm, anchor=north west]{
-{#1}
-};
-\end{tikzpicture}
-\def\secstring{\thesection}
-\StrLen{\secstring}[\seclength]
-\ifthenelse{\seclength > 3}{\vspace{-0.65cm}}{}
+	\settowidth{\mylen}{\thesection}
+	\begin{tikzpicture}[ anchor = south west]
+		\node at (0,0) {\color{npurp}\Circled{\thesection}};
+		\node at (\mylen*1.1+12,0.86) [text width=17cm, anchor=north west]{
+			{#1}
+		};
+	\end{tikzpicture}
+	\def\secstring{\thesection}
+	\StrLen{\secstring}[\seclength]
+	\ifthenelse{\seclength > 3}{\vspace{-0.65cm}}{}
 }[\vspace{-0.45cm}]
 \fi
 
@@ -284,23 +284,23 @@ import geometry;
 
 \titleformat{\chapter}[display]{}
 {
-\stepcounter{chapterid}
-\begin{tikzpicture}[remember picture,overlay,anchor = north west]
-\path (current page.north west) node[below right,fill=headpurp,minimum width=\paperwidth, minimum height=4cm] (box){};
-\path (current page.north west) node[below right,fill=dpurp,minimum width=\paperwidth, minimum height=0.65cm] (box){};
-\coordinate (ur) at (\paperwidth-55,1.8+\dist);
-\path (ur) node[below left,fill=dpurp,minimum width=3cm, minimum height = 3cm](box){
-\scalebox{2}{\deffont\Huge\color{white}\bfseries\thechapter}
-};
-\coordinate (ch) at (\paperwidth-300,0.9+\dist);
-\path (ch) node(box){\scalebox{1.5}{\bask\Huge\bfseries\scshape{\chaptername}}};
-\end{tikzpicture}
+	\stepcounter{chapterid}
+	\begin{tikzpicture}[remember picture,overlay,anchor = north west]
+		\path (current page.north west) node[below right,fill=headpurp,minimum width=\paperwidth, minimum height=4cm] (box){};
+		\path (current page.north west) node[below right,fill=dpurp,minimum width=\paperwidth, minimum height=0.65cm] (box){};
+		\coordinate (ur) at (\paperwidth-55,1.8+\dist);
+		\path (ur) node[below left,fill=dpurp,minimum width=3cm, minimum height = 3cm](box){
+			\scalebox{2}{\deffont\Huge\color{white}\bfseries\thechapter}
+		};
+		\coordinate (ch) at (\paperwidth-300,0.9+\dist);
+		\path (ch) node(box){\scalebox{1.5}{\bask\Huge\bfseries\scshape{\chaptername}}};
+	\end{tikzpicture}
 }{0pt}{
-\begin{tikzpicture}[remember picture, overlay, anchor=south west]
-\node (chtext) at (0,1.75+\dist) {
-\parbox{15cm}{\begin{flushleft}\begin{hyphenrules}{nohyphenation}\newpx\chsize#1\end{hyphenrules}\end{flushleft}}
-};
-\end{tikzpicture}
+	\begin{tikzpicture}[remember picture, overlay, anchor=south west]
+		\node (chtext) at (0,1.75+\dist) {
+			\parbox{15cm}{\begin{flushleft}\begin{hyphenrules}{nohyphenation}\newpx\chsize#1\end{hyphenrules}\end{flushleft}}
+		};
+	\end{tikzpicture}
 }[\vspace{2em}\label{\thechapterid}]
 
 %\newcommand{\chapterquote}[2] % meh dont think this is any good
@@ -328,32 +328,32 @@ import geometry;
 \fancyhead{}
 
 \fancyfoot[RO] {\ifnum\value{chapter}>0\relax\scshape{\bfseries\bask \chaptername\;\thechapter}\;\;{\hypersetup{
-	colorlinks,
-	citecolor=black,
-	filecolor=black,
-	linkcolor=black,
-	urlcolor=black
-}\nameref{\thechapterid}}\;\;\;\;\fi\normalsize{\bask \bfseries\thepage}}
+			colorlinks,
+			citecolor=black,
+			filecolor=black,
+			linkcolor=black,
+			urlcolor=black
+		}\nameref{\thechapterid}}\;\;\;\;\fi\normalsize{\bask \bfseries\thepage}}
 \fancyfoot[LE] {\bask\thepage}
 \fancyfoot[C] {}
 
 \fancypagestyle{plain}{
-\fancyhf{}
-\fancyfoot[RO,LE]{\bask\thepage}
-\renewcommand{\headrulewidth}{0pt}
+	\fancyhf{}
+	\fancyfoot[RO,LE]{\bask\thepage}
+	\renewcommand{\headrulewidth}{0pt}
 }
 
 %theorem spam
 
 \newtheoremstyle{dbox}%                % Name
-	{0pt}%                                     % Space above
-	{2pt}%                                     % Space below
-	{}%                                     % Body font
-	{}%                                     % Indent amount
-	{\color{npurp}\cha\bfseries}%                            % Theorem head font
-	{}%                                    % Punctuation after theorem head
-	{\newline}%                                    % Space after theorem head, ' ', or \newline
-	{\vspace{1.5pt}\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}%
+{0pt}%                                     % Space above
+{2pt}%                                     % Space below
+{}%                                     % Body font
+{}%                                     % Indent amount
+{\color{npurp}\cha\bfseries}%                            % Theorem head font
+{}%                                    % Punctuation after theorem head
+{\newline}%                                    % Space after theorem head, ' ', or \newline
+{\vspace{1.5pt}\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}%
 
 \newtheoremstyle{proof}
 {0pt}
@@ -388,150 +388,150 @@ import geometry;
 \theoremstyle{dbox}
 
 \newmdtheoremenv[% settings
-backgroundcolor=bgpurp,
-nobreak=true,
-linecolor=npurp,
-linewidth=0.6pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{theo}{Theorem}[section]
+	backgroundcolor=bgpurp,
+	nobreak=true,
+	linecolor=npurp,
+	linewidth=0.6pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{theo}{Theorem}[section]
 
 \newmdtheoremenv[% settings
-backgroundcolor=bggray,
-nobreak=true,
-linecolor=npurp,
-linewidth=2pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{defi}[theo]{Definition}
+	backgroundcolor=bggray,
+	nobreak=true,
+	linecolor=npurp,
+	linewidth=2pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{defi}[theo]{Definition}
 
 \newmdtheoremenv[% settings
-backgroundcolor=bggray,
-nobreak=true,
-linecolor=npurp,
-linewidth=2pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{fact}[theo]{Fact}
+	backgroundcolor=bggray,
+	nobreak=true,
+	linecolor=npurp,
+	linewidth=2pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{fact}[theo]{Fact}
 
 \newmdtheoremenv[% settings
-backgroundcolor=white,
-nobreak=true,
-linecolor=npurp,
-linewidth=0.6pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{exam}[theo]{Example}
+	backgroundcolor=white,
+	nobreak=true,
+	linecolor=npurp,
+	linewidth=0.6pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{exam}[theo]{Example}
 
 \newmdtheoremenv[% settings
-backgroundcolor=white,
-nobreak=true,
-linecolor=npurp,
-linewidth=0.6pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{exer}[theo]{Exercise}
+	backgroundcolor=white,
+	nobreak=true,
+	linecolor=npurp,
+	linewidth=0.6pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{exer}[theo]{Exercise}
 
 \newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{lemma}[theo]{Lemma}
+	backgroundcolor=thmblue,
+	nobreak=true,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false]{lemma}[theo]{Lemma}
 
 \newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{corollary}[theo]{Corollary}
+	backgroundcolor=thmblue,
+	nobreak=true,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false]{corollary}[theo]{Corollary}
 
 \theoremstyle{proof}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=emred,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=emred,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{pro}{Proof}
 
 \def\endpro{\hfill$\blacksquare$}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=emred,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=emred,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{sol}{Solution}
 
 \theoremstyle{remark}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=dpurp,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=dpurp,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{remark}{Remark}
 
 \theoremstyle{walk}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=emred,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=2pt,
-innerbottommargin=4pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=emred,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=2pt,
+	innerbottommargin=4pt,
+	innerleftmargin=7pt
 ]{walk}{Walkthrough}
 
 \renewcommand{\walk}{{\sffamily\color{emred}\bfseries Walkthrough:~}}
@@ -549,20 +549,20 @@ innerleftmargin=7pt
 % \addhint is used as \begin{addhint}{type in your hint}\end{addhint}
 % \gethint is not used manually.
 \newcommand\addhint[1]{%
-\stepcounter{hintcounter}%
-\ref{hint:\thehintcounter}%
-\expandafter\gdef\csname hintlist\thehintcounter\endcsname{#1}%
+	\stepcounter{hintcounter}%
+	\ref{hint:\thehintcounter}%
+	\expandafter\gdef\csname hintlist\thehintcounter\endcsname{#1}%
 }
 \newcommand\gethint[1]{%
-\item \csname hintlist#1\endcsname \label{hint:#1}
+	\item \csname hintlist#1\endcsname \label{hint:#1}
 }
 \newcommand\addsol[1]{%
-\stepcounter{solcounter}%
-\ref{sol:\thesolcounter}%
-\expandafter\gdef\csname sollist\thesolcounter\endcsname{#1}%
+	\stepcounter{solcounter}%
+	\ref{sol:\thesolcounter}%
+	\expandafter\gdef\csname sollist\thesolcounter\endcsname{#1}%
 }
 \newcommand\getsol[1]{%
-\item \csname sollist#1\endcsname \label{sol:#1}
+	\item \csname sollist#1\endcsname \label{sol:#1}
 }
 % You put (typically) \begin{hint}All of your \begin{addhint}..\end{addhint} here\end{hint} so it looks like Hint: # # #
 \newenvironment{hint}{\mbox\bgroup\footnotesize\normalfont\textbf{Hints}:}{\hspace{-0.5ex}\egroup}

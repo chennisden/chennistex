@@ -24,20 +24,20 @@
 % is this a book?
 
 \ifbook
-\LoadClass[openany]{book}
+	\LoadClass[openany]{book}
 \else
-\LoadClass{article}
+	\LoadClass{article}
 \fi
 
 % asy options
 \RequirePackage{asymptote}
 \ifdennisasy
-\begin{asydef}
-size(6cm);
-import olympiad;
-import cse5;
-import geometry;
-\end{asydef}
+	\begin{asydef}
+		size(6cm);
+		import olympiad;
+		import cse5;
+		import geometry;
+	\end{asydef}
 \fi
 
 % universal imports
@@ -50,15 +50,15 @@ import geometry;
 
 \ifcolorinvert
 
-\definecolor{darkmidnightblue}{rgb}{0.57,0.0,0.04}
-\definecolor{sangria}{rgb}{0.0, 0.2, 0.4}
-\definecolor{persianblue}{RGB}{128, 0, 0}
+	\definecolor{darkmidnightblue}{rgb}{0.57,0.0,0.04}
+	\definecolor{sangria}{rgb}{0.0, 0.2, 0.4}
+	\definecolor{persianblue}{RGB}{128, 0, 0}
 
 \else
 
-\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-\definecolor{sangria}{rgb}{0.57, 0.0, 0.04}
-\definecolor{persianblue}{rgb}{0.11, 0.22, 0.73}
+	\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+	\definecolor{sangria}{rgb}{0.57, 0.0, 0.04}
+	\definecolor{persianblue}{rgb}{0.11, 0.22, 0.73}
 
 \fi
 
@@ -96,24 +96,24 @@ import geometry;
 
 \newenvironment{prob}[2][]
 {\parindent=0pt
-\raggedright
-\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}\hspace{3.5pt}\ignorespaces
+	\raggedright
+	\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}\hspace{3.5pt}\ignorespaces
 }
 {
-\vspace{0.2cm}
+	\vspace{0.2cm}
 }
 
 \newenvironment{req}[2][]
 {\parindent=0pt
-\raggedright
-\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faDiamond]} \textbf{{\color{sangria}Problem \theproblem}}{\textbf{{\color{sangria}\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}}\hspace{3.5pt}\ignorespaces
+	\raggedright
+	\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faDiamond]} \textbf{{\color{sangria}Problem \theproblem}}{\textbf{{\color{sangria}\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}}\hspace{3.5pt}\ignorespaces
 }
 {
-\vspace{0.2cm}
+	\vspace{0.2cm}
 }
 
 \newcommand{\minpt}[1]{Minimum is {\color{sangria}[#1\,\faPencil]}. Problems with the {\color{sangria}\faDiamond} symbol are required.
-    \vspace{\baselineskip}
+	\vspace{\baselineskip}
 }
 % Specifies minimum amount of points for completion
 
@@ -123,34 +123,34 @@ import geometry;
 
 \newcommand{\psetquote}[2] % BE CAREFUL WITH THIS. must be DIRECTLY after minpt
 {
-\vspace{-\baselineskip}
-\begin{flushright}
-\begin{tikzpicture}
-\draw (0,0) node [right,text width=8.75cm]{
-\begin{mdframed}[linecolor=darkblue,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=thmblue]
-{``#1''}
+	\vspace{-\baselineskip}
+	\begin{flushright}
+		\begin{tikzpicture}
+			\draw (0,0) node [right,text width=8.75cm]{
+				\begin{mdframed}[linecolor=darkblue,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=thmblue]
+					{``#1''}
 
-\vspace{1mm}
+					\vspace{1mm}
 
-\hfill\color{sangria}\fell#2
-\end{mdframed}
-};
+					\hfill\color{sangria}\fell#2
+				\end{mdframed}
+			};
 
-\end{tikzpicture}
-\end{flushright}
+		\end{tikzpicture}
+	\end{flushright}
 }
 
 \RequirePackage[letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,includeheadfoot]{geometry} % geometry has to be BEFORE fancyhdr for margins to work!
 
 \ifmast % Logo setup
-\RequirePackage{fancyhdr}
-\pagestyle{fancyplain}
-\renewcommand{\headrulewidth}{0pt} % clear header
-\fancyhead{} % clear line
+	\RequirePackage{fancyhdr}
+	\pagestyle{fancyplain}
+	\renewcommand{\headrulewidth}{0pt} % clear header
+	\fancyhead{} % clear line
 
-\fancyfoot[L]{\raisebox{-6pt}[0pt][0pt]{\includegraphics[width=3cm]{MASTlogo.png}}} % logo!
-\fancyfoot[C]{} % clear page number
-\fancyfoot[R]{\thepage}
+	\fancyfoot[L]{\raisebox{-6pt}[0pt][0pt]{\includegraphics[width=3cm]{MASTlogo.png}}} % logo!
+	\fancyfoot[C]{} % clear page number
+	\fancyfoot[R]{\thepage}
 \fi
 
 \RequirePackage{etoolbox} % needed for hints and also title
@@ -158,17 +158,17 @@ import geometry;
 %terrible hack for title - but fine
 
 \ifbook
-\patchcmd{\@maketitle}{\@title}{\sffamily\bfseries\@title{}}{}{}
-\patchcmd{\@maketitle}{\@author}{\sffamily\textit{\@author}}{}{}
-\patchcmd{\@maketitle}{\@date}{\sffamily\@date}{}{}
+	\patchcmd{\@maketitle}{\@title}{\sffamily\bfseries\@title{}}{}{}
+	\patchcmd{\@maketitle}{\@author}{\sffamily\textit{\@author}}{}{}
+	\patchcmd{\@maketitle}{\@date}{\sffamily\@date}{}{}
 \else
-\patchcmd{\@maketitle}{\@title}{\sffamily\color{sangria}\bfseries\@title{}}{}{}
-\patchcmd{\@maketitle}{\@author}{\sffamily\@author}{}{}
-\patchcmd{\@maketitle}{\@date}{\sffamily\color{persianblue}{\@date}}{}{}
+	\patchcmd{\@maketitle}{\@title}{\sffamily\color{sangria}\bfseries\@title{}}{}{}
+	\patchcmd{\@maketitle}{\@author}{\sffamily\@author}{}{}
+	\patchcmd{\@maketitle}{\@date}{\sffamily\color{persianblue}{\@date}}{}{}
 \fi
 
 \ifhint % Scrambled hints setup
-\RequirePackage{hintsol}
+	\RequirePackage{hintsol}
 \fi
 
 % font formatting
@@ -193,55 +193,55 @@ import geometry;
 
 \RequirePackage[hypertexnames=false]{hyperref}
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=darkmidnightblue,
-    urlcolor=darkmidnightblue
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=darkmidnightblue,
+	urlcolor=darkmidnightblue
 }
 
 % toc looks bad with hyperref
 
 \newcommand{\toc}{
-{\hypersetup{
-	citecolor=black,
-	filecolor=black,
-	linkcolor=black,
-	urlcolor=black}
-\tableofcontents}
+	{\hypersetup{
+				citecolor=black,
+				filecolor=black,
+				linkcolor=black,
+				urlcolor=black}
+			\tableofcontents}
 }
 
 % theorem styles
 
 \newtheoremstyle{dennistheo}%                % Name
-  {0pt}%                                     % Space above
-  {2pt}%                                     % Space below
-  {}%                                     % Body font
-  {}%                                     % Indent amount
-  {\color{darkblue}\sffamily\bfseries}%                            % Theorem head font
-  {}%                                    % Punctuation after theorem head
-  {1.5mm}%                                    % Space after theorem head, ' ', or \newline
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+{0pt}%                                     % Space above
+{2pt}%                                     % Space below
+{}%                                     % Body font
+{}%                                     % Indent amount
+{\color{darkblue}\sffamily\bfseries}%                            % Theorem head font
+{}%                                    % Punctuation after theorem head
+{1.5mm}%                                    % Space after theorem head, ' ', or \newline
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
 
 \newtheoremstyle{def}%                % Name
-  {0pt}%                                     % Space above
-  {2pt}%                                     % Space below
-  {}%                                     % Body font
-  {}%                                     % Indent amount
-  {\color{darkgreen}\sffamily\bfseries}%                            % Theorem head font
-  {}%                                    % Punctuation after theorem head
-  {1.5mm}%                                    % Space after theorem head, ' ', or \newline
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+{0pt}%                                     % Space above
+{2pt}%                                     % Space below
+{}%                                     % Body font
+{}%                                     % Indent amount
+{\color{darkgreen}\sffamily\bfseries}%                            % Theorem head font
+{}%                                    % Punctuation after theorem head
+{1.5mm}%                                    % Space after theorem head, ' ', or \newline
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
 
 \newtheoremstyle{dennisexample}%                % Name
-  {0pt}%                                     % Space above
-  {2pt}%                                     % Space below
-  {}%                                     % Body font
-  {}%                                     % Indent amount
-  {\color{darkred}\sffamily\bfseries}%                            % Theorem head font
-  {}%                                    % Punctuation after theorem head
-  {1.5mm}%                                    % Space after theorem head, ' ', or \newline
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+{0pt}%                                     % Space above
+{2pt}%                                     % Space below
+{}%                                     % Body font
+{}%                                     % Indent amount
+{\color{darkred}\sffamily\bfseries}%                            % Theorem head font
+{}%                                    % Punctuation after theorem head
+{1.5mm}%                                    % Space after theorem head, ' ', or \newline
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
 
 \newtheoremstyle{proof}
 {0pt}
@@ -286,254 +286,254 @@ import geometry;
 
 \ifoldsec % old section
 
-\RequirePackage{marvosym}
+	\RequirePackage{marvosym}
 
-\titleformat{\section}
-{\sffamily\Large\bfseries}{{\color{sangria}\Radioactivity\,\thesection}}{0.8em}{}
+	\titleformat{\section}
+	{\sffamily\Large\bfseries}{{\color{sangria}\Radioactivity\,\thesection}}{0.8em}{}
 
-% subsections
-\titleformat{\subsection}
-{\sffamily\large\bfseries}{{\color{sangria}\thesubsection}}{0.9em}{}
+	% subsections
+	\titleformat{\subsection}
+	{\sffamily\large\bfseries}{{\color{sangria}\thesubsection}}{0.9em}{}
 
-%subsubsections (just in case!)
+	%subsubsections (just in case!)
 
-\titleformat{\subsubsection}
-{\sffamily\normalsize\bfseries}{{\color{sangria}\thesubsubsection}}{0.9em}{}
+	\titleformat{\subsubsection}
+	{\sffamily\normalsize\bfseries}{{\color{sangria}\thesubsubsection}}{0.9em}{}
 
 \else
-%titling & sectioning from team.sty
+	%titling & sectioning from team.sty
 
-\newcommand{\sectioncolor}{sangria} % in case I need to change this for any reason
+	\newcommand{\sectioncolor}{sangria} % in case I need to change this for any reason
 
-\titleformat{\section}{\normalfont\Large\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}\rule{\linewidth}{0.6mm}]
-\titleformat{\subsection}{\normalfont\large\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesubsection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}]
-\titleformat{\subsubsection}{\normalfont\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesubsubsection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}]
+	\titleformat{\section}{\normalfont\Large\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}\rule{\linewidth}{0.6mm}]
+	\titleformat{\subsection}{\normalfont\large\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesubsection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}]
+	\titleformat{\subsubsection}{\normalfont\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesubsubsection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}]
 \fi
 
 \ifbook
 
-\renewcommand\thepart{\Alph{part}} % make parts A,B,C,...
+	\renewcommand\thepart{\Alph{part}} % make parts A,B,C,...
 
-% quotes at start of chapters, NEEDS CHANGEPAGE
-\newcommand{\chapterquote}[2]{
-\begin{adjustwidth}{10pt}{10pt}
-{\alegreyafont#1
-\begin{flushright}
-\textsl{#2}
-\\
-\end{flushright}}
-\end{adjustwidth}
+	% quotes at start of chapters, NEEDS CHANGEPAGE
+	\newcommand{\chapterquote}[2]{
+		\begin{adjustwidth}{10pt}{10pt}
+			{\alegreyafont#1
+				\begin{flushright}
+					\textsl{#2}
+					\\
+				\end{flushright}}
+		\end{adjustwidth}
 
-}
+	}
 
-% nuclear symbol for chapters and sections; book only
+	% nuclear symbol for chapters and sections; book only
 
-\titleformat{\part}[display]
-            {\alegreyafont\bfseries\huge\filcenter}
-            {\partname\ \thepart}
-            {20pt}
-            {\Huge}
-\titlespacing*{\part}{0pt}{*36}{*1}
+	\titleformat{\part}[display]
+	{\alegreyafont\bfseries\huge\filcenter}
+	{\partname\ \thepart}
+	{20pt}
+	{\Huge}
+	\titlespacing*{\part}{0pt}{*36}{*1}
 
-\titleformat{\chapter}[display]
-{\alegreyafont\huge}{\chaptertitlename\ \thechapter}{20pt}{\Huge}[\titlerule]
+	\titleformat{\chapter}[display]
+	{\alegreyafont\huge}{\chaptertitlename\ \thechapter}{20pt}{\Huge}[\titlerule]
 
-% theorem numberings different
+	% theorem numberings different
 
-\theoremstyle{dennistheo}
+	\theoremstyle{dennistheo}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{theo}{Theorem}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmblue,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{theo}{Theorem}[chapter]
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{lemma}{Lemma}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmblue,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{lemma}{Lemma}[chapter]
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{corollary}{Corollary}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmblue,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{corollary}{Corollary}[chapter]
 
-\theoremstyle{def}
+	\theoremstyle{def}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmgreen,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{fact}{Fact}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmgreen,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{fact}{Fact}[chapter]
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmgreen,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{defi}{Definition}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmgreen,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{defi}{Definition}[chapter]
 
-\theoremstyle{dennisexample}
+	\theoremstyle{dennisexample}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmred,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{exam}{Example}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmred,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{exam}{Example}[chapter]
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmred,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{exer}{Exercise}[chapter]
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmred,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{exer}{Exercise}[chapter]
 
 \else
 
-% theorem numbers same
+	% theorem numbers same
 
-\theoremstyle{dennistheo}
+	\theoremstyle{dennistheo}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{theo}{Theorem}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmblue,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{theo}{Theorem}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{lemma}{Lemma}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmblue,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{lemma}{Lemma}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmblue,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{corollary}{Corollary}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmblue,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{corollary}{Corollary}
 
-\theoremstyle{def}
+	\theoremstyle{def}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmgreen,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{fact}{Fact}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmgreen,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{fact}{Fact}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmgreen,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{claim}{Claim}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmgreen,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{claim}{Claim}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmgreen,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{defi}{Definition}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmgreen,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{defi}{Definition}
 
-\theoremstyle{dennisexample}
+	\theoremstyle{dennisexample}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmred,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{exam}{Example}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmred,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{exam}{Example}
 
-\newmdtheoremenv[% settings
-backgroundcolor=thmred,
-nobreak=true,
-innerleftmargin=5pt,
-innerrightmargin=5pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{exer}{Exercise}
+	\newmdtheoremenv[% settings
+		backgroundcolor=thmred,
+		nobreak=true,
+		innerleftmargin=5pt,
+		innerrightmargin=5pt,
+		topline=false,
+		bottomline=false,
+		rightline=false,
+		leftline=false]{exer}{Exercise}
 \fi
 
 \theoremstyle{proof}
 
 \newmdtheoremenv[
-backgroundcolor=lightpurple,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=darkpurple,
-linewidth=3pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{pro}{Proof}
+	backgroundcolor=lightpurple,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=darkpurple,
+	linewidth=3pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{pro}{Proof}
 
 \theoremstyle{remark}
 
 \newmdtheoremenv[
-backgroundcolor=remcolor,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=black,
-linewidth=3pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{remark}{Remark}
+	backgroundcolor=remcolor,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=black,
+	linewidth=3pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{remark}{Remark}
 
 \renewcommand{\thepro}{\unskip}
 

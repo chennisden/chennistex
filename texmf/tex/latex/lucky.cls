@@ -19,10 +19,10 @@
 
 \RequirePackage{asymptote}
 \begin{asydef}
-size(6cm);
-import olympiad;
-import cse5;
-import geometry;
+	size(6cm);
+	import olympiad;
+	import cse5;
+	import geometry;
 \end{asydef}
 
 \RequirePackage{tikz}
@@ -42,22 +42,22 @@ import geometry;
 
 \RequirePackage[hypertexnames=false]{hyperref}
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=darkblue,
-    urlcolor=darkblue
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=darkblue,
+	urlcolor=darkblue
 }
 
 % toc looks bad with hyperref
 
 \newcommand{\toc}{
-{\hypersetup{
-	citecolor=black,
-	filecolor=black,
-	linkcolor=black,
-	urlcolor=black}
-\tableofcontents}
+	{\hypersetup{
+				citecolor=black,
+				filecolor=black,
+				linkcolor=black,
+				urlcolor=black}
+			\tableofcontents}
 }
 
 %%%%%%%%%%%%%
@@ -157,20 +157,20 @@ import geometry;
 
 \newcommand{\psetquote}[2] % BE CAREFUL WITH THIS. must be DIRECTLY after minpt
 {
-\begin{flushright}
-\begin{tikzpicture}
-\draw (0,0) node [right,text width=8.75cm]{
-\begin{mdframed}[linecolor=dennispurple,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=lightpurple]
-{\alegreyafont``#1''}
+	\begin{flushright}
+		\begin{tikzpicture}
+			\draw (0,0) node [right,text width=8.75cm]{
+				\begin{mdframed}[linecolor=dennispurple,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=lightpurple]
+					{\alegreyafont``#1''}
 
-\vspace{1mm}
+					\vspace{1mm}
 
-\hfill\color{importantred}\fell#2
-\end{mdframed}
-};
+					\hfill\color{importantred}\fell#2
+				\end{mdframed}
+			};
 
-\end{tikzpicture}
-\end{flushright}
+		\end{tikzpicture}
+	\end{flushright}
 }
 
 % actual problems
@@ -180,45 +180,45 @@ import geometry;
 
 \ifnumber
 
-\newenvironment{prob}[2][]{
-{\parindent=0pt
-\raggedright
-\stepcounter{problem}
-\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else{} (#1)\fi}}\hspace{3.5pt}\ignorespaces
-}
-{
-\vspace{0.2cm}
-}
+	\newenvironment{prob}[2][]{
+		{\parindent=0pt
+				\raggedright
+				\stepcounter{problem}
+				\robotofont\color{dennispurple}[#2\,\probSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else{} (#1)\fi}}\hspace{3.5pt}\ignorespaces
+	}
+	{
+		\vspace{0.2cm}
+	}
 
-\newenvironment{req}[2][]{
-{\parindent=0pt
-\raggedright
-\stepcounter{problem}
-\robotofont\color{importantred}[#2\,\reqSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else{} (#1)\fi}}\hspace{3.5pt}\ignorespaces
-}
-{
-\vspace{0.2cm}
-}
+	\newenvironment{req}[2][]{
+		{\parindent=0pt
+				\raggedright
+				\stepcounter{problem}
+				\robotofont\color{importantred}[#2\,\reqSymb]\;\textbf{Problem \theproblem\if\relax\detokenize{#1}\else{} (#1)\fi}}\hspace{3.5pt}\ignorespaces
+	}
+	{
+		\vspace{0.2cm}
+	}
 
 \else
 
-\newenvironment{prob}[2][]{
-{\parindent=0pt
-\raggedright
-\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
-}
-{
-\vspace{0.2cm}
-}
+	\newenvironment{prob}[2][]{
+		{\parindent=0pt
+				\raggedright
+				\robotofont\color{dennispurple}[#2\,\probSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
+	}
+	{
+		\vspace{0.2cm}
+	}
 
-\newenvironment{req}[2][]{
-{\parindent=0pt
-\raggedright
-\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
-}
-{
-\vspace{0.2cm}
-}
+	\newenvironment{req}[2][]{
+		{\parindent=0pt
+				\raggedright
+				\robotofont\color{importantred}[#2\,\reqSymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
+	}
+	{
+		\vspace{0.2cm}
+	}
 
 \fi
 
@@ -229,14 +229,14 @@ import geometry;
 % theorem styles
 
 \newtheoremstyle{theo}%                % Name
-  {0pt}%                                     % Space above
-  {0pt}%                                     % Space below
-  {}%                                     % Body font
-  {}%                                     % Indent amount
-  {\color{darkblue}\sffamily\bfseries}%                            % Theorem head font
-  {.}%                                    % Punctuation after theorem head
-  {1.5mm}%                                    % Space after theorem head, ' ', or \newline
-  {\thmnote{#3}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+{0pt}%                                     % Space above
+{0pt}%                                     % Space below
+{}%                                     % Body font
+{}%                                     % Indent amount
+{\color{darkblue}\sffamily\bfseries}%                            % Theorem head font
+{.}%                                    % Punctuation after theorem head
+{1.5mm}%                                    % Space after theorem head, ' ', or \newline
+{\thmnote{#3}}%                                     % Theorem head spec (can be left empty, meaning `normal')
 
 \newtheoremstyle{def}
 {0pt}
@@ -289,93 +289,93 @@ import geometry;
 {\thmname{#1}\thmnote{ #3}}
 
 % theorems
-  
+
 \theoremstyle{theo}
 
 \newmdtheoremenv[
-backgroundcolor=thmblue,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=darkblue,
-linewidth=0.5pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{theo}{Theorem}
+	backgroundcolor=thmblue,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=darkblue,
+	linewidth=0.5pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{theo}{Theorem}
 
 \theoremstyle{def}
 
 \newmdtheoremenv[
-backgroundcolor=thmgreen,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=darkgreen,
-linewidth=0.5pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{defi}{Definition}
+	backgroundcolor=thmgreen,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=darkgreen,
+	linewidth=0.5pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{defi}{Definition}
 
 \theoremstyle{ex}
 
 \newmdtheoremenv[
-backgroundcolor=thmred,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=importantred,
-linewidth=0.5pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{exam}{Example}
+	backgroundcolor=thmred,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=importantred,
+	linewidth=0.5pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{exam}{Example}
 
 \newmdtheoremenv[
-backgroundcolor=thmred,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=importantred,
-linewidth=0.5pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{exer}{Exercise}
+	backgroundcolor=thmred,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=importantred,
+	linewidth=0.5pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{exer}{Exercise}
 
 \theoremstyle{proof}
 
 \newmdtheoremenv[
-backgroundcolor=lightpurple,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=dennispurple,
-linewidth=3pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{pro}{Proof}
+	backgroundcolor=lightpurple,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=dennispurple,
+	linewidth=3pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{pro}{Proof}
 
 \theoremstyle{solution}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=importantred,
-linewidth=3pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=importantred,
+	linewidth=3pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{sol}{Solution}
 
 \newtheorem*{walk}{Walkthrough}
@@ -385,17 +385,17 @@ innerleftmargin=7pt
 \theoremstyle{remark}
 
 \newmdtheoremenv[
-backgroundcolor=remcolor,
-nobreak=true,
-innertopmargin=5pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-linecolor=black,
-linewidth=3pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{remark}{Remark}
+	backgroundcolor=remcolor,
+	nobreak=true,
+	innertopmargin=5pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	linecolor=black,
+	linewidth=3pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{remark}{Remark}
 
 \newenvironment{fact}{\begin{theo}}{\end{theo}}
 

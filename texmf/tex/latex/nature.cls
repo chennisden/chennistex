@@ -19,8 +19,8 @@
 \RequirePackage{ifallfalse} % package from the providers of bounce.cls
 
 \begin{allfalse}{\nature@theme}{ % throw error if \nature@theme matches neither forest or ocean
-	\ClassError{forest}{Invalid or no theme passed in}{Valid themes are forest, ocean}
-}
+		\ClassError{forest}{Invalid or no theme passed in}{Valid themes are forest, ocean}
+	}
 	\orcheck{forest}
 	\orcheck{ocean}
 \end{allfalse}
@@ -31,10 +31,10 @@
 
 \RequirePackage{asymptote}
 \begin{asydef}
-size(6cm);
-import olympiad;
-import cse5;
-import geometry;
+	size(6cm);
+	import olympiad;
+	import cse5;
+	import geometry;
 \end{asydef}
 
 \RequirePackage{tikz}
@@ -64,10 +64,10 @@ import geometry;
 %     The fourth line defines \@primarycolor
 
 \def\palettecolor#1#2#3{
-    \definecolor{#1#2 color}{HTML}{#3}
-    \expandafter\def\csname @#1#2\endcsname{\color{#1#2 color}}
-    \expandafter\def\csname @#2\endcsname{\csname @\nature@theme #2\endcsname}
-    \expandafter\def\csname @#2color\endcsname{\nature@theme #2 color}
+	\definecolor{#1#2 color}{HTML}{#3}
+	\expandafter\def\csname @#1#2\endcsname{\color{#1#2 color}}
+	\expandafter\def\csname @#2\endcsname{\csname @\nature@theme #2\endcsname}
+	\expandafter\def\csname @#2color\endcsname{\nature@theme #2 color}
 }
 
 \palettecolor{forest}{primary}{033c16}
@@ -123,11 +123,11 @@ import geometry;
 
 \RequirePackage[hypertexnames=false]{hyperref}
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=\@primarycolor,
-    urlcolor=\@primarycolor
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=\@primarycolor,
+	urlcolor=\@primarycolor
 }
 
 \RequirePackage{tocloft}
@@ -139,10 +139,10 @@ import geometry;
 % shorthand for toc; prevent everything from being blue or whatever
 
 \newcommand{\toc}{
-{\hypersetup{
-	linkcolor=black}
-\tableofcontents
-\pagebreak}
+	{\hypersetup{
+				linkcolor=black}
+			\tableofcontents
+			\pagebreak}
 }
 
 %%%%%%%%%%%%%%%%%%%
@@ -182,44 +182,44 @@ import geometry;
 % \end{prob}
 
 \newenvironment{prob}[2][]{
-{\parindent=0pt
-\raggedright
-\robotofont\@primary[#2\,\@probsymb]\textbf{\if\relax\detokenize{#1}\else~(#1)\fi}}\hspace{3.5pt}\ignorespaces
+	{\parindent=0pt
+			\raggedright
+			\robotofont\@primary[#2\,\@probsymb]\textbf{\if\relax\detokenize{#1}\else~(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
 {
-\vspace{0.2cm}
+	\vspace{0.2cm}
 }
 
 \newenvironment{req}[2][]{
-{\parindent=0pt
-\raggedright
-\robotofont\@accent[#2\,\@reqsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
+	{\parindent=0pt
+			\raggedright
+			\robotofont\@accent[#2\,\@reqsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
 {
-\vspace{0.2cm}
+	\vspace{0.2cm}
 }
 
 \newcommand{\minpt}[1]{Minimum is {\@primary[#1\,\@probsymb]}. Problems with the\;{\@accent\@reqsymb}\;symbol are required.
-    \vspace{\baselineskip}
+\vspace{\baselineskip}
 }
 
 \newcommand{\psetquote}[2] % BE CAREFUL WITH THIS. must be DIRECTLY after minpt
 {
-\vspace{-\baselineskip}
-\begin{flushright}
-\begin{tikzpicture}
-\draw (0,0) node [right,text width=8.75cm]{
-\begin{mdframed}[linecolor=\@primarycolor,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=\@alternatecolor]
-{\alegreyafont``#1''}
+	\vspace{-\baselineskip}
+	\begin{flushright}
+		\begin{tikzpicture}
+			\draw (0,0) node [right,text width=8.75cm]{
+				\begin{mdframed}[linecolor=\@primarycolor,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=\@alternatecolor]
+					{\alegreyafont``#1''}
 
-\vspace{1mm}
+					\vspace{1mm}
 
-\hfill\@accent\fell#2
-\end{mdframed}
-};
+					\hfill\@accent\fell#2
+				\end{mdframed}
+			};
 
-\end{tikzpicture}
-\end{flushright}
+		\end{tikzpicture}
+	\end{flushright}
 }
 
 %%%%%%%%%
@@ -238,192 +238,192 @@ import geometry;
 %%%%%%%%%%
 
 \newtheoremstyle{dbox}
-	{0pt}
-	{2pt}
-	{}
-	{}
-	{\@primary\cha\bfseries}
-	{}
-	{\newline}
-	{\vspace{1.5pt}\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}
-	
+{0pt}
+{2pt}
+{}
+{}
+{\@primary\cha\bfseries}
+{}
+{\newline}
+{\vspace{1.5pt}\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}
+
 \newtheoremstyle{proof}
-	{0pt}
-	{0pt}
-	{}
-	{}
-	{\@accent\sffamily\bfseries}
-	{:}
-	{4pt}
-	{\thmname{#1}\thmnote{ #3}}
+{0pt}
+{0pt}
+{}
+{}
+{\@accent\sffamily\bfseries}
+{:}
+{4pt}
+{\thmname{#1}\thmnote{ #3}}
 
 \newtheoremstyle{walk}
-	{0pt}
-	{0pt}
-	{}
-	{}
-	{\@accent\sffamily\bfseries}
-	{:}
-	{0pt}
-	{\thmname{#1}\thmnote{ #3}}
+{0pt}
+{0pt}
+{}
+{}
+{\@accent\sffamily\bfseries}
+{:}
+{0pt}
+{\thmname{#1}\thmnote{ #3}}
 
 \newtheoremstyle{remark}
-	{0pt}
-	{0pt}
-	{}
-	{}
-	{\@primary\sffamily\bfseries}
-	{:}
-	{1.5mm}
-	{\thmname{#1}\thmnote{ #3}}
-	
+{0pt}
+{0pt}
+{}
+{}
+{\@primary\sffamily\bfseries}
+{:}
+{1.5mm}
+{\thmname{#1}\thmnote{ #3}}
+
 \theoremstyle{dbox}
 
 \newmdtheoremenv[% settings
-backgroundcolor=\@alternatecolor,
-nobreak=true,
-linecolor=\@primarycolor,
-linewidth=0.6pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{theo}{Theorem}[section]
+	backgroundcolor=\@alternatecolor,
+	nobreak=true,
+	linecolor=\@primarycolor,
+	linewidth=0.6pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{theo}{Theorem}[section]
 
 \newmdtheoremenv[% settings
-backgroundcolor=bggray,
-nobreak=true,
-linecolor=\@primarycolor,
-linewidth=2pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{defi}[theo]{Definition}
+	backgroundcolor=bggray,
+	nobreak=true,
+	linecolor=\@primarycolor,
+	linewidth=2pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{defi}[theo]{Definition}
 
 \newmdtheoremenv[% settings
-backgroundcolor=bggray,
-nobreak=true,
-linecolor=\@primarycolor,
-linewidth=2pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=true]{fact}[theo]{Fact}
+	backgroundcolor=bggray,
+	nobreak=true,
+	linecolor=\@primarycolor,
+	linewidth=2pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true]{fact}[theo]{Fact}
 
 \newmdtheoremenv[% settings
-nobreak=true,
-linecolor=\@primarycolor,
-linewidth=0.6pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{exam}[theo]{Example}
+	nobreak=true,
+	linecolor=\@primarycolor,
+	linewidth=0.6pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{exam}[theo]{Example}
 
 \newmdtheoremenv[% settings
-nobreak=true,
-linecolor=\@primarycolor,
-linewidth=0.6pt,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=true,
-bottomline=true,
-rightline=true,
-leftline=true]{exer}[theo]{Exercise}
+	nobreak=true,
+	linecolor=\@primarycolor,
+	linewidth=0.6pt,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true]{exer}[theo]{Exercise}
 
 \newmdtheoremenv[% settings
-backgroundcolor=\@alternatecolor,
-nobreak=true,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{lemma}[theo]{Lemma}
+	backgroundcolor=\@alternatecolor,
+	nobreak=true,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false]{lemma}[theo]{Lemma}
 
 \newmdtheoremenv[% settings
-backgroundcolor=\@alternatecolor,
-nobreak=true,
-innerleftmargin=7pt,
-innerrightmargin=7pt,
-innertopmargin=7pt,
-topline=false,
-bottomline=false,
-rightline=false,
-leftline=false]{corollary}[theo]{Corollary}
+	backgroundcolor=\@alternatecolor,
+	nobreak=true,
+	innerleftmargin=7pt,
+	innerrightmargin=7pt,
+	innertopmargin=7pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false]{corollary}[theo]{Corollary}
 
 \RequirePackage{pgf}
 
 \theoremstyle{proof}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=\@accentcolor,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=\@accentcolor,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{pro}{Proof}
 
 \def\endpro{\hfill$\blacksquare$}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=\@accentcolor,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=\@accentcolor,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{sol}{Solution}
 
 \theoremstyle{remark}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=\@primarycolor,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=3pt,
-innerbottommargin=3.5pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=\@primarycolor,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=3pt,
+	innerbottommargin=3.5pt,
+	innerleftmargin=7pt
 ]{remark}{Remark}
 
 \theoremstyle{walk}
 
 \newmdtheoremenv[
-nobreak=false,
-linecolor=\@accentcolor,
-linewidth=1pt,
-leftline=true,
-rightline=false,
-topline=false,
-bottomline=false,
-innertopmargin=2pt,
-innerbottommargin=4pt,
-innerleftmargin=7pt
+	nobreak=false,
+	linecolor=\@accentcolor,
+	linewidth=1pt,
+	leftline=true,
+	rightline=false,
+	topline=false,
+	bottomline=false,
+	innertopmargin=2pt,
+	innerbottommargin=4pt,
+	innerleftmargin=7pt
 ]{walk}{Walkthrough}
 
 \renewcommand{\walk}{{\sffamily\@accent\bfseries Walkthrough:~}}
