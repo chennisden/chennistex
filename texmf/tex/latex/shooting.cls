@@ -1,11 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{shooting}
 
-\newif\iftwocol\twocoltrue
-\newif\ifpurp\purptrue
+\newif\iftwocol\twocolfalse
+\newif\ifpurp\purpfalse
 
-\DeclareOption{onecol}{\twocolfalse}
-\DeclareOption{blue}{\purpfalse}
+\DeclareOption{twocol}{\twocoltrue}
+\DeclareOption{purple}{\purptrue}
 
 \ProcessOptions\relax
 
