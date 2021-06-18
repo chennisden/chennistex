@@ -122,7 +122,7 @@
 	urlcolor=emred
 }
 
-\newcommand{\dbold}[1]{{\bfseries\color{emred}#1}}
+\renewcommand{\emph}[1]{{\bfseries\color{emred}#1}}
 
 %toc setup
 
@@ -583,8 +583,6 @@
 \RequirePackage{enumitem}
 
 % compatibility with lucky sty
-
-\newcommand{\db}{\dbold}
 
 \newcommand{\ansbold}[1]{{\color{dpurp}\mathbf{#1}}}
 

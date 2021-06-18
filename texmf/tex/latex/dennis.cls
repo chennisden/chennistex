@@ -551,13 +551,11 @@
 
 \newcommand{\Item}{\item[\ding{70}]} % k dis is just dumb
 
-\newcommand{\dbold}[1]{{\color{sangria}\bfseries#1}}
+\renewcommand{\emph}[1]{{\color{sangria}\bfseries#1}}
 
 \newcommand{\pbold}[1]{{\color{persianblue}\bfseries#1}}
 
 \newcommand{\problem}[2]{\noindent{\pbold \if\relax\detokenize{#1}\relax\else#1. \fi}#2}
-
-\newcommand{\db}{\dbold}
 
 \RequirePackage{bm}
 

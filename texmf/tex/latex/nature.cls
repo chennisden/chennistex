@@ -226,9 +226,7 @@
 %VISUALS%
 %%%%%%%%%
 
-\newcommand{\db}[1]{{\bfseries\@accent#1}}
-\newcommand{\dbold}[1]{\db{#1}}
-
+\renewcommand{\emph}[1]{{\bfseries\@accent#1}}
 \newcommand{\ansbold}[1]{{\@accent\mathbf{#1}}}
 
 \newcommand{\problems}{\pagebreak\section{Problems}}
