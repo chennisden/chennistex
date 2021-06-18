@@ -212,32 +212,41 @@
 \titleformat{\part}{}{}{0em}{
 	\thispagestyle{empty}
 	\begin{tikzpicture}[remember picture, overlay]
-		\coordinate (A) at ($(current page.center)+(0-\pl*1/2-\pshift,\vs+\pw*1/2-\pshift)$);
-		\coordinate (B) at ($(current page.center)+(0-\pl*1/2-\pshift,\vs-\pw*1/2-2*\pshift)$);
-		\coordinate (C) at ($(current page.center)+(\pl*1/2-\pshift,\vs-\pw*1/2-\pshift)$);
+        \draw ($(current page.center)+(0,\vertshift)$) node (textbox) [text width = 8cm] {
+			\begin{mdframed}[
+					hidealllines=true
+			]
+				\begin{center}
+					{\partsize\partname\;\thepart}
+					\vskip 1cm
+					{\smallpartsize#1}
+				\end{center}
+			\end{mdframed}
+        };
 		%
-		\coordinate (L) at ($(current page.center)+(0-\pl*1/2-2*\pshift,\vs+\pw*1/2-2*\pshift)$);
-		\coordinate (M) at ($(current page.center)+(0-\pl*1/2-2*\pshift,\vs-\pw*1/2-\pshift)$);
-		\coordinate (N) at ($(current page.center)+(\pl*1/2-2*\pshift,\vs-\pw*1/2-2*\pshift)$);
+		\coordinate (A) at ($(textbox.north west)+(-\innerhor,\innervert)+(2*\linedist,0)$);
+		\coordinate (B) at ($(textbox.north east)+(\innerhor,\innervert)+(\linedist,0)$);
+		\coordinate (C) at ($(textbox.south east)+(\innerhor,-\innervert)+(\linedist,3*\linedist)$);
 		%
-		\draw (A)--(B)--(N);
-		\draw (L)--(M)--(C);
+		\draw (A) -- (B) -- (C);
 		%
-		\coordinate (D) at ($(current page.center)+(0-\pl*1/2+\pshift,\vs+\pw*1/2+\pshift)$);
-		\coordinate (E) at ($(current page.center)+(\pl*1/2+\pshift,\vs+\pw*1/2+2*\pshift)$);
-		\coordinate (F) at ($(current page.center)+(\pl*1/2+\pshift,\vs-\pw*1/2+\pshift)$);
+		\coordinate (D) at ($(textbox.north west)+(-\innerhor,\innervert)+(3*\linedist,\linedist)$);
+		\coordinate (E) at ($(textbox.north east)+(\innerhor,\innervert)+(0,\linedist)$);
+		\coordinate (F) at ($(textbox.south east)+(\innerhor,-\innervert)+(0,2*\linedist)$);
 		%
-		\coordinate (P) at ($(current page.center)+(0-\pl*1/2+2*\pshift,\vs+\pw*1/2+2*\pshift)$);
-		\coordinate (Q) at ($(current page.center)+(\pl*1/2+2*\pshift,\vs+\pw*1/2+\pshift)$);
-		\coordinate (R) at ($(current page.center)+(\pl*1/2+2*\pshift,\vs-\pw*1/2+2*\pshift)$);
+		\draw (D) -- (E) -- (F);
 		%
-		\draw (P)--(E)--(F);
-		\draw (D)--(Q)--(R);
-		\node at ($(current page.center)+(0,\vs)$)[align=center]{
-		\\[1\baselineskip]
-		{\partsize\partname\;\thepart}\\[2.5\baselineskip]
-		{\smallpartsize#1}
-		};
+		\coordinate (L) at ($(textbox.south east)+(\innerhor,-\innervert)+(-2*\linedist,0)$);
+		\coordinate (M) at ($(textbox.south west)+(-\innerhor,-\innervert)+(-\linedist,0)$);
+		\coordinate (N) at ($(textbox.north west)+(-\innerhor,\innervert)+(-\linedist,-3*\linedist)$);
+		%
+		\draw (L) -- (M) -- (N);
+		%
+		\coordinate (P) at ($(textbox.south east)+(\innerhor,-\innervert)+(-3*\linedist,-\linedist)$);
+		\coordinate (Q) at ($(textbox.south west)+(-\innerhor,-\innervert)+(0,-\linedist)$);
+		\coordinate (R) at ($(textbox.north west)+(-\innerhor,\innervert)+(0,-2*\linedist)$);
+		%
+		\draw (P) -- (Q) -- (R);
 	\end{tikzpicture}%
 }
 
