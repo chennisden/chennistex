@@ -8,7 +8,7 @@ If you're using my code, I'd appreciate if you dropped me a message at chennis#0
 
 Because I've been asked about cv.cls the most, I'll dedicate a small section to it.
 
-As examples, the tex source for my CV can be found on [my website](https://www.geometryexplorer.xyz/texfiles/CV/cv.tex) and so can [the compiled PDF][https://www.geometryexplorer.xyz/texfiles/CV/cv.pdf]. I recommend you get a *stable* copy of cv.cls, because I am prone to making large changes to my code somewhat frequently. (Though I don't think anything I do will break the class; everything should be backwards compatible.)
+As examples, the tex source for my CV can be found on [my website](https://www.geometryexplorer.xyz/texfiles/CV/cv.tex) and so can [the compiled PDF](https://www.geometryexplorer.xyz/texfiles/CV/cv.pdf). I recommend you get a *stable* copy of cv.cls, because I am prone to making large changes to my code somewhat frequently. (Though I don't think anything I do will break the class; everything should be backwards compatible.)
 
 Once again, you may use this for any reason. No permission is required.
 
