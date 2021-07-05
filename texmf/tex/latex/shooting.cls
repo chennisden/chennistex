@@ -210,7 +210,6 @@
 {}{\errmessage{Cannot patch \string\part}}
 
 \titleformat{\part}{}{}{0em}{
-	\thispagestyle{empty}
 	\begin{tikzpicture}[remember picture, overlay]
         \draw ($(current page.center)+(0,\vertshift)$) node (textbox) [text width = 8cm] {
 			\begin{mdframed}[
