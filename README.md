@@ -1,53 +1,36 @@
-# Permissions
+# Install instructions
 
-Anyone may use any of my classes or packages for any reason. No attribution is required, though it is certainly appreciated in the source code. I only ask that you do not pass any of my work off as your own.
+All you have to do is clone this repository into `~/texmf/tex/latex` (or whatever your personal texmf happens to be).
 
-If you're using my code, I'd appreciate if you dropped me a message at chennis#0724 on Discord (subject to change) or emailed me at proofprogram@gmail.com. Also please star the repository if you found it helpful :)
+# This repository is not a good example of TeX code.
 
-## CV
+There is a reason this is not in CTAN.
 
-Because I've been asked about cv.cls the most, I'll dedicate a small section to it.
+I hacked together `dennis.cls` when I was a middle schooler still using Overleaf, and I honestly do not want to look back on that and actually maintain it. These classes are only *semi-supported*, meaning if you have an issue I can easily fix I'll let you know how to fix it, but I won't actively develop any of these classes anymore. The public class I am most likely to care about right now is [https://github.com/chennisden/bounce](bounce), so I would recommend you use that instead.
 
-As examples, the tex source for my CV can be found on [my website](https://www.geometryexplorer.xyz/texfiles/CV/cv.tex) and so can [the compiled PDF](https://www.geometryexplorer.xyz/texfiles/CV/cv.pdf). I recommend you get a *stable* copy of cv.cls, because I am prone to making large changes to my code somewhat frequently. (Though I don't think anything I do will break the class; everything should be backwards compatible.)
+## Classes
 
-Once again, you may use this for any reason. No permission is required.
+Currently they have no documentation, sorry; they're just sort of there as historical artefacts. I think they look pretty good, but most of my math writing is now for Math Advance and I'm using our inhouse classes, so I don't really use any of these often anymore.
 
-# Configuration Instructions
+These are the relevant classes; many will be moved.
 
-You are going to need a TeX distribution. I recommend TeX Live (MacTeX for Mac users). You will also need Git Bash.
+- dennis.cls
+- lucky.cls
+- shooting.cls
+- nature.cls
 
-## Overleaf
+## Dependencies
 
-Download an actual TeX distribution.
+I have a couple of dependencies with personal formatting options I like. I load some math operators in `mathOperators.sty`, I create TikZ Macros to make my life easier when constructing diagrams in `tikzMacros.sty`, and I store some fonts I frequently use in commands of `fonts.sty`. I package them all together in `universal.sty`.
 
-## TeX Live
+The package `chessBM.sty` is some chess black magic I copied from Stack Exchange. Through adjustboxes, it makes the chess symbols look good inline. (I use this for the problem symbols in several classes.)
 
-Here's a [youtube video](https://www.youtube.com/watch?v=x3f-hQyHjrE) on how to change the TEXMFHOME variable through texmf.cnf. There are many other ways to do this.
+They can all be found in [https://github.com/chennisden/ch-texdep](ch-texdep). You are going to need this for any of my classes. I'll also probably be moving a number of my general utility packages to CTAN; so expect some packages such as `hintsol.sty`, `solprint.sty`, `prob.sty` to disappear. You'll want to run
 
-First find a directory to clone this repository into. Then, once you have cd'ed into it, run
+    tlmgr install [package]
 
-	git clone https://github.com/chennisden/chennistex
+if LaTeX tells you it can't find any package.
 
-If there are any changes, you can fetch them by running
+# Legacy/deprecated styles
 
-	git pull
-
-inside the repository's directory.
-
-To allow LaTeX to locate the texmf and asymptote modules, you will need to configure the TEXMFHOME and ASYMPTOTE_HOME path variables. To do this, find texmf.cnf by running
-
-	kpsewhich texmf.cnf
-
-and inside texmf.cnf, add the following lines:
-
-	TEXMFHOME = ~/(path)/dennistex/texmf
-
-	ASYMPTOTE_HOME = ~/(path)/dennis/.asy
-
-where path denotes the directory dennistex is in. (Note that ~ represents the user directory.) If you want to add other paths to your TEXMFHOME or ASYMPTOTE_HOME path variable, use the path separator to separate them. This is : on UNIX and ; on MSDOS. For instance, if you wanted to add the Bounce repository to your texmf,
-
-Ensure that there is a line between the TEXMFHOME and ASYMPTOTE_HOME directories.
-
-## MiKTeX
-
-To be done
+team.sty is a variation of dennis.sty. We made most of the team.sty changes _in_ dennis.sty, so there is no reason to care about it (other than exercisebox by Amol Rama). It was used for MAC's 2020 Summer AMC course and has not been used since.
