@@ -47,19 +47,29 @@
 % colors, needed for pts and title
 
 \RequirePackage{xcolor}
+\RequirePackage{colorpalette}
+
+\newpalettetheme{main}
+
+\newpalette{main}{normal}
+\newpalette{main}{invert}
+
+\addcolortotheme{main}{primary}
+\addcolortotheme{main}{alt}
+\addcolortotheme{main}{secondary}
+
+\setpalettecolor{main}{normal}{primary}[rgb]{0,0.2,0.4}
+\setpalettecolor{main}{normal}{alt}[rgb]{0.57, 0.0, 0.04}
+\setpalettecolor{main}{normal}{secondary}[rgb]{0.11, 0.22, 0.73}
+
+\setpalettecolor{main}{invert}{primary}[rgb]{0.57,0.0,0.04}
+\setpalettecolor{main}{invert}{alt}[rgb]{0,0.2,0.4}
+\setpalettecolor{main}{invert}{secondary}[RGB]{128,0,0}
 
 \ifcolorinvert
-
-	\definecolor{darkmidnightblue}{rgb}{0.57,0.0,0.04}
-	\definecolor{sangria}{rgb}{0.0, 0.2, 0.4}
-	\definecolor{persianblue}{RGB}{128, 0, 0}
-
+	\activepalette{main}{invert}
 \else
-
-	\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-	\definecolor{sangria}{rgb}{0.57, 0.0, 0.04}
-	\definecolor{persianblue}{rgb}{0.11, 0.22, 0.73}
-
+	\activepalette{main}{normal}
 \fi
 
 \definecolor{titlered}{RGB}{128, 0.0, 0.0}
@@ -97,7 +107,7 @@
 \newenvironment{prob}[2][]
 {\parindent=0pt
 	\raggedright
-	\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}\hspace{3.5pt}\ignorespaces
+	\stepcounter{problem}{\applycolor{main}{primary}[#2\,\faPencil]} \textbf{Problem \theproblem}{\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}\hspace{3.5pt}\ignorespaces
 }
 {
 	\vspace{0.2cm}
@@ -106,13 +116,13 @@
 \newenvironment{req}[2][]
 {\parindent=0pt
 	\raggedright
-	\stepcounter{problem}{\color{darkmidnightblue}[#2\,\faDiamond]} \textbf{{\color{sangria}Problem \theproblem}}{\textbf{{\color{sangria}\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}}\hspace{3.5pt}\ignorespaces
+	\stepcounter{problem}{\applycolor{main}{primary}[#2\,\faDiamond]} \textbf{{\applycolor{main}{alt}Problem \theproblem}}{\textbf{{\applycolor{main}{alt}\if\relax\detokenize{#1}\relax\else\hspace{3pt}(#1)\fi}}}\hspace{3.5pt}\ignorespaces
 }
 {
 	\vspace{0.2cm}
 }
 
-\newcommand{\minpt}[1]{Minimum is {\color{sangria}[#1\,\faPencil]}. Problems with the {\color{sangria}\faDiamond} symbol are required.
+\newcommand{\minpt}[1]{Minimum is {\applycolor{main}{alt}[#1\,\faPencil]}. Problems with the {\applycolor{main}{alt}\faDiamond} symbol are required.
 	\vspace{\baselineskip}
 }
 % Specifies minimum amount of points for completion
@@ -132,7 +142,7 @@
 
 					\vspace{1mm}
 
-					\hfill\color{sangria}\fell#2
+					\hfill\applycolor{main}{alt}\fell#2
 				\end{mdframed}
 			};
 
@@ -162,9 +172,9 @@
 	\patchcmd{\@maketitle}{\@author}{\sffamily\textit{\@author}}{}{}
 	\patchcmd{\@maketitle}{\@date}{\sffamily\@date}{}{}
 \else
-	\patchcmd{\@maketitle}{\@title}{\sffamily\color{sangria}\bfseries\@title{}}{}{}
+	\patchcmd{\@maketitle}{\@title}{\sffamily\applycolor{main}{alt}\bfseries\@title{}}{}{}
 	\patchcmd{\@maketitle}{\@author}{\sffamily\@author}{}{}
-	\patchcmd{\@maketitle}{\@date}{\sffamily\color{persianblue}{\@date}}{}{}
+	\patchcmd{\@maketitle}{\@date}{\sffamily\applycolor{main}{secondary}{\@date}}{}{}
 \fi
 
 \ifhint % Scrambled hints setup
@@ -196,8 +206,8 @@
 	colorlinks,
 	citecolor=black,
 	filecolor=black,
-	linkcolor=darkmidnightblue,
-	urlcolor=darkmidnightblue
+	linkcolor=\getcolor{main}{primary},
+	urlcolor=\getcolor{main}{primary}
 }
 
 % toc looks bad with hyperref
@@ -268,7 +278,7 @@
 {0pt}
 {}
 {}
-{\color{darkmidnightblue}\sffamily\bfseries}
+{\applycolor{main}{primary}\sffamily\bfseries}
 {:}
 {1.5mm}
 {\thmname{#1}\thmnote{ #3}}
@@ -289,21 +299,21 @@
 	\RequirePackage{marvosym}
 
 	\titleformat{\section}
-	{\sffamily\Large\bfseries}{{\color{sangria}\Radioactivity\,\thesection}}{0.8em}{}
+	{\sffamily\Large\bfseries}{{\applycolor{main}{alt}\Radioactivity\,\thesection}}{0.8em}{}
 
 	% subsections
 	\titleformat{\subsection}
-	{\sffamily\large\bfseries}{{\color{sangria}\thesubsection}}{0.9em}{}
+	{\sffamily\large\bfseries}{{\applycolor{main}{alt}\thesubsection}}{0.9em}{}
 
 	%subsubsections (just in case!)
 
 	\titleformat{\subsubsection}
-	{\sffamily\normalsize\bfseries}{{\color{sangria}\thesubsubsection}}{0.9em}{}
+	{\sffamily\normalsize\bfseries}{{\applycolor{main}{alt}\thesubsubsection}}{0.9em}{}
 
 \else
 	%titling & sectioning from team.sty
 
-	\newcommand{\sectioncolor}{sangria} % in case I need to change this for any reason
+	\newcommand{\sectioncolor}{\getcolor{main}{alt}} % in case I need to change this for any reason
 
 	\titleformat{\section}{\normalfont\Large\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}\rule{\linewidth}{0.6mm}]
 	\titleformat{\subsection}{\normalfont\large\bfseries\sffamily}{\color{\sectioncolor}{\S\,\thesubsection}}{1em}{\color{\sectioncolor}}[\color{\sectioncolor}]
@@ -545,21 +555,21 @@
 
 \newtheorem*{walk}{Walkthrough} % always use the enumerate environment during walkthroughs
 
-\def\walk{{\color{darkmidnightblue}\sffamily\bfseries Walkthrough:} $\phantom{}$}
+\def\walk{{\applycolor{main}{primary}\sffamily\bfseries Walkthrough:} $\phantom{}$}
 
 %custom bullet points
 
 \newcommand{\Item}{\item[\ding{70}]} % k dis is just dumb
 
-\renewcommand{\emph}[1]{{\color{sangria}\bfseries#1}}
+\renewcommand{\emph}[1]{{\applycolor{main}{alt}\bfseries#1}}
 
-\newcommand{\pbold}[1]{{\color{persianblue}\bfseries#1}}
+\newcommand{\pbold}[1]{{\applycolor{main}{secondary}\bfseries#1}}
 
 \newcommand{\problem}[2]{\noindent{\pbold \if\relax\detokenize{#1}\relax\else#1. \fi}#2}
 
 \RequirePackage{bm}
 
-\newcommand{\ansbold}[1]{{\color{darkmidnightblue}\bm{#1}}}
+\newcommand{\ansbold}[1]{{\applycolor{main}{primary}\bm{#1}}}
 
 \newcommand{\answer}[5]{\vspace{0.2cm}\noindent$\textbf{(A)}\ #1 \qquad\textbf{(B)}\ #2 \qquad\textbf{(C)}\ #3 \qquad\textbf{(D)}\ #4 \qquad\textbf{(E)}\ #5$}
 
