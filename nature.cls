@@ -1,30 +1,6 @@
 \ProvidesClass{nature}
 \LoadClass{article}
 
-%%%%%%%%%
-%OPTIONS%
-%%%%%%%%%
-
-\RequirePackage{kvoptions}
-
-%   - xinttools (for zapping away spaces)
-\RequirePackage{xinttools}
-
-\DeclareStringOption[ocean]{theme}
-
-\ProcessKeyvalOptions*
-
-\edef\nature@theme{\expandafter\xintZapSpaces\expandafter\nature@theme} % zaps spaces
-
-\RequirePackage{ifallfalse} % package from the providers of bounce.cls
-
-\begin{allfalse}{\nature@theme}{ % throw error if \nature@theme matches neither forest or ocean
-		\ClassError{forest}{Invalid or no theme passed in}{Valid themes are forest, ocean}
-	}
-	\orcheck{forest}
-	\orcheck{ocean}
-\end{allfalse}
-
 %%%%%%%%%%%%
 %ESSENTIALS%
 %%%%%%%%%%%%
@@ -53,32 +29,48 @@
 %%%%%%%%
 
 \RequirePackage{xcolor}
+\RequirePackage{colorpalette, symbolpalette}
 
-% These colors have their names chosen to explicitly enumerate what feelings they are supposed to evoke.
+\newpalettetheme{nature}
 
-% Takes in palette name, palette color, HTML color code 
-%   Ex: \palettecolor{red}{primary}{696969}
-%     The first line defines the color redprimarycolor,
-%     The second line defines the command \@redprimary (so \@primary actually has something to refer to)
-%     The third line defines \@primary in this example,
-%     The fourth line defines \@primarycolor
+\newpalette{nature}{forest}
+\newpalette{nature}{ocean}
 
-\def\palettecolor#1#2#3{
-	\definecolor{#1#2 color}{HTML}{#3}
-	\expandafter\def\csname @#1#2\endcsname{\color{#1#2 color}}
-	\expandafter\def\csname @#2\endcsname{\csname @\nature@theme #2\endcsname}
-	\expandafter\def\csname @#2color\endcsname{\nature@theme #2 color}
-}
+\addcolortotheme{nature}{primary}
+\addcolortotheme{nature}{alternate}
+\addcolortotheme{nature}{accent}
+\addcolortotheme{nature}{background}
 
-\palettecolor{forest}{primary}{033c16}
-\palettecolor{forest}{alternate}{ccffbb}
-\palettecolor{forest}{accent}{640f0f}
+\setpalettecolor{nature}{forest}{primary}{033c16}
+\setpalettecolor{nature}{forest}{alternate}{ccffbb}
+\setpalettecolor{nature}{forest}{accent}{640f0f}
+\setpalettecolor{nature}{forest}{background}{e6e6e6}
 
-\palettecolor{ocean}{primary}{002896}
-\palettecolor{ocean}{alternate}{d2f0ff}
-\palettecolor{ocean}{accent}{91000a}
+\setpalettecolor{nature}{ocean}{primary}{002896}
+\setpalettecolor{nature}{ocean}{alternate}{d2f0ff}
+\setpalettecolor{nature}{ocean}{accent}{91000a}
+\setpalettecolor{nature}{ocean}{background}{e6e6e6}
 
-\definecolor{bggray}{HTML}{e6e6e6}
+\newsuitetheme{nature}
+
+\newsuite{nature}{forest}
+\newsuite{nature}{ocean}
+
+\addsymboltotheme{nature}{sect}
+\addsymboltotheme{nature}{prob}
+\addsymboltotheme{nature}{req}
+
+\setsuitesymbol{nature}{forest}{sec}{\faTree}
+\setsuitesymbol{nature}{forest}{prob}{\faLeaf}
+\setsuitesymbol{nature}{forest}{req}{\faTint}
+
+\setsuitesymbol{nature}{ocean}{sec}{\faGlobe}
+\setsuitesymbol{nature}{ocean}{prob}{\pawnB}
+\setsuitesymbol{nature}{ocean}{req}{\knightB}
+
+% Default palette/suite
+\activepalette{nature}{ocean}
+\activesuite{nature}{ocean}
 
 \RequirePackage[letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,includeheadfoot]{geometry} % geometry has to be BEFORE fancyhdr for margins to work!
 
@@ -88,27 +80,6 @@
 
 \RequirePackage{newpxtext,newpxmath}
 \RequirePackage{fontawesome, pifont}
-
-% section symbols
-
-\def\@forestsec{\faTree}
-\def\@oceansec{\faGlobe}
-
-\def\@secsymb{\csname @\nature@theme sec\endcsname}
-
-% problem symbols
-
-\RequirePackage[nosymb]{chessBM} % do not auto define prob and req symbs
-
-\def\@forestprob{\faLeaf}
-\def\@oceanprob{\pawnB}
-
-\def\@probsymb{\csname @\nature@theme prob\endcsname}
-
-\def\@forestreq{\faTint}
-\def\@oceanreq{\knightB}
-
-\def\@reqsymb{\csname @\nature@theme req\endcsname}
 
 % itemize symbols
 \renewcommand{\labelitemi}{$\blacksquare$}
@@ -126,14 +97,14 @@
 	colorlinks,
 	citecolor=black,
 	filecolor=black,
-	linkcolor=\@primarycolor,
-	urlcolor=\@primarycolor
+	linkcolor=\getcolor{nature}{primary},
+	urlcolor=\getcolor{nature}{primary}
 }
 
 \RequirePackage{tocloft}
 
 \renewcommand{\cfttoctitlefont}{\merri\bfseries\LARGE}
-\renewcommand{\cftsecfont}{\hypersetup{linkcolor=\@primarycolor}\notofont\bfseries\large\@primary}
+\renewcommand{\cftsecfont}{\hypersetup{linkcolor=\getcolor{nature}{primary}}\notofont\bfseries\large\applycolor{nature}{primary}}
 \renewcommand{\cftsubsecfont}{\tlffont}
 
 % shorthand for toc; prevent everything from being blue or whatever
@@ -151,9 +122,9 @@
 
 \RequirePackage{etoolbox} % used for patchcmd
 
-\patchcmd{\@maketitle}{\@title}{\merri\@primary\bfseries\@title}{}{}
+\patchcmd{\@maketitle}{\@title}{\merri\applycolor{nature}{primary}\bfseries\@title}{}{}
 \patchcmd{\@maketitle}{\@author}{\merri\@author}{}{}
-\patchcmd{\@maketitle}{\@date}{\merri\@primary\@date}{}{}
+\patchcmd{\@maketitle}{\@date}{\merri\applycolor{nature}{primary}\@date}{}{}
 
 %%%%%%%%%%%%
 %SECTIONING%
@@ -162,16 +133,16 @@
 \RequirePackage{titlesec}
 
 \titleformat{\section}
-{\notofont\Large\bfseries}{{\@primary\@secsymb\,\thesection}}{0.8em}{}
+{\notofont\Large\bfseries}{{\applycolor{nature}{primary}\@secsymb\,\thesection}}{0.8em}{}
 
 % subsections
 \titleformat{\subsection}
-{\sffamily\large\bfseries}{{\@primary\thesubsection}}{0.9em}{}
+{\sffamily\large\bfseries}{{\applycolor{nature}{primary}\thesubsection}}{0.9em}{}
 
 %subsubsections (just in case!)
 
 \titleformat{\subsubsection}
-{\sffamily\normalsize\bfseries}{{\@primary\thesubsubsection}}{0.9em}{}
+{\sffamily\normalsize\bfseries}{{\applycolor{nature}{primary}\thesubsubsection}}{0.9em}{}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %PROBLEM ENVIRONMENTS%
@@ -184,7 +155,7 @@
 \newenvironment{prob}[2][]{
 	{\parindent=0pt
 			\raggedright
-			\robotofont\@primary[#2\,\@probsymb]\textbf{\if\relax\detokenize{#1}\else~(#1)\fi}}\hspace{3.5pt}\ignorespaces
+			\robotofont\applycolor{nature}{primary}[#2\,\printsymbol{nature}{prob}]\textbf{\if\relax\detokenize{#1}\else~(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
 {
 	\vspace{0.2cm}
@@ -193,13 +164,13 @@
 \newenvironment{req}[2][]{
 	{\parindent=0pt
 			\raggedright
-			\robotofont\@accent[#2\,\@reqsymb]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
+			\robotofont\applycolor{nature}{accent}[#2\,\printsymbol{nature}{req}]\textbf{\if\relax\detokenize{#1}\else\hspace{3pt}(#1)\fi}}\hspace{3.5pt}\ignorespaces
 }
 {
 	\vspace{0.2cm}
 }
 
-\newcommand{\minpt}[1]{Minimum is {\@primary[#1\,\@probsymb]}. Problems with the\;{\@accent\@reqsymb}\;symbol are required.
+\newcommand{\minpt}[1]{Minimum is {\applycolor{nature}{primary}[#1\,\printsymbol{nature}{prob}]}. Problems with the\;{\applycolor{nature}{accent}\printsymbol{nature}{req}}\;symbol are required.
 \vspace{\baselineskip}
 }
 
@@ -209,12 +180,12 @@
 	\begin{flushright}
 		\begin{tikzpicture}
 			\draw (0,0) node [right,text width=8.75cm]{
-				\begin{mdframed}[linecolor=\@primarycolor,leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=\@alternatecolor]
+				\begin{mdframed}[linecolor=\getcolor{nature}{primary},leftline=true,rightline=false,bottomline=false,topline=false,linewidth=3pt,backgroundcolor=\getcolor{nature}{alternate}]
 					{\alegreyafont``#1''}
 
 					\vspace{1mm}
 
-					\hfill\@accent\fell#2
+					\hfill\applycolor{nature}{accent}\fell#2
 				\end{mdframed}
 			};
 
@@ -226,8 +197,8 @@
 %VISUALS%
 %%%%%%%%%
 
-\renewcommand{\emph}[1]{{\bfseries\@accent#1}}
-\newcommand{\ansbold}[1]{{\@accent\mathbf{#1}}}
+\renewcommand{\emph}[1]{{\bfseries\applycolor{nature}{accent}#1}}
+\newcommand{\ansbold}[1]{{\applycolor{nature}{accent}\mathbf{#1}}}
 
 \newcommand{\problems}{\pagebreak\section{Problems}}
 
@@ -240,7 +211,7 @@
 {2pt}
 {}
 {}
-{\@primary\cha\bfseries}
+{\applycolor{nature}{primary}\cha\bfseries}
 {}
 {\newline}
 {\vspace{1.5pt}\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}
@@ -250,7 +221,7 @@
 {0pt}
 {}
 {}
-{\@accent\sffamily\bfseries}
+{\applycolor{nature}{accent}\sffamily\bfseries}
 {:}
 {4pt}
 {\thmname{#1}\thmnote{ #3}}
@@ -260,7 +231,7 @@
 {0pt}
 {}
 {}
-{\@accent\sffamily\bfseries}
+{\applycolor{nature}{accent}\sffamily\bfseries}
 {:}
 {0pt}
 {\thmname{#1}\thmnote{ #3}}
@@ -270,7 +241,7 @@
 {0pt}
 {}
 {}
-{\@primary\sffamily\bfseries}
+{\applycolor{nature}{primary}\sffamily\bfseries}
 {:}
 {1.5mm}
 {\thmname{#1}\thmnote{ #3}}
@@ -278,9 +249,9 @@
 \theoremstyle{dbox}
 
 \newmdtheoremenv[% settings
-	backgroundcolor=\@alternatecolor,
+	backgroundcolor=\getcolor{nature}{alternate},
 	nobreak=true,
-	linecolor=\@primarycolor,
+	linecolor=\getcolor{nature}{primary},
 	linewidth=0.6pt,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -291,9 +262,9 @@
 	leftline=true]{theo}{Theorem}[section]
 
 \newmdtheoremenv[% settings
-	backgroundcolor=bggray,
+	backgroundcolor=\getcolor{nature}{background},
 	nobreak=true,
-	linecolor=\@primarycolor,
+	linecolor=\getcolor{nature}{primary},
 	linewidth=2pt,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -304,9 +275,9 @@
 	leftline=true]{defi}[theo]{Definition}
 
 \newmdtheoremenv[% settings
-	backgroundcolor=bggray,
+	backgroundcolor=\getcolor{nature}{background},
 	nobreak=true,
-	linecolor=\@primarycolor,
+	linecolor=\getcolor{nature}{primary},
 	linewidth=2pt,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -318,7 +289,7 @@
 
 \newmdtheoremenv[% settings
 	nobreak=true,
-	linecolor=\@primarycolor,
+	linecolor=\getcolor{nature}{primary},
 	linewidth=0.6pt,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -330,7 +301,7 @@
 
 \newmdtheoremenv[% settings
 	nobreak=true,
-	linecolor=\@primarycolor,
+	linecolor=\getcolor{nature}{primary},
 	linewidth=0.6pt,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -341,7 +312,7 @@
 	leftline=true]{exer}[theo]{Exercise}
 
 \newmdtheoremenv[% settings
-	backgroundcolor=\@alternatecolor,
+	backgroundcolor=\getcolor{nature}{alternate},
 	nobreak=true,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -352,7 +323,7 @@
 	leftline=false]{lemma}[theo]{Lemma}
 
 \newmdtheoremenv[% settings
-	backgroundcolor=\@alternatecolor,
+	backgroundcolor=\getcolor{nature}{alternate},
 	nobreak=true,
 	innerleftmargin=7pt,
 	innerrightmargin=7pt,
@@ -368,7 +339,7 @@
 
 \newmdtheoremenv[
 	nobreak=false,
-	linecolor=\@accentcolor,
+	linecolor=\getcolor{nature}{accent},
 	linewidth=1pt,
 	leftline=true,
 	rightline=false,
@@ -383,7 +354,7 @@
 
 \newmdtheoremenv[
 	nobreak=false,
-	linecolor=\@accentcolor,
+	linecolor=\getcolor{nature}{accent},
 	linewidth=1pt,
 	leftline=true,
 	rightline=false,
@@ -398,7 +369,7 @@
 
 \newmdtheoremenv[
 	nobreak=false,
-	linecolor=\@primarycolor,
+	linecolor=\getcolor{nature}{primary},
 	linewidth=1pt,
 	leftline=true,
 	rightline=false,
@@ -413,7 +384,7 @@
 
 \newmdtheoremenv[
 	nobreak=false,
-	linecolor=\@accentcolor,
+	linecolor=\getcolor{nature}{accent},
 	linewidth=1pt,
 	leftline=true,
 	rightline=false,
@@ -424,4 +395,4 @@
 	innerleftmargin=7pt
 ]{walk}{Walkthrough}
 
-\renewcommand{\walk}{{\sffamily\@accent\bfseries Walkthrough:~}}
+\renewcommand{\walk}{{\sffamily\applycolor{nature}{accent}\bfseries Walkthrough:~}}
