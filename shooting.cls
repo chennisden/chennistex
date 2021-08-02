@@ -43,7 +43,7 @@
 	import geometry;
 \end{asydef}
 
-\usepackage{amsthm,amssymb}
+\usepackage{amsthm}
 \usepackage{thmtools}
 \usepackage{mdframed}
 
@@ -200,10 +200,10 @@
 \newcommand{\partsize}{\fontsize{50}{60}\selectfont}
 \newcommand{\smallpartsize}{\fontsize{28}{33.6}\selectfont}
 
-\newcommand\pl{10} % length of rectangle (cm)
-\newcommand\pw{6} % width of rectangle
-\newcommand\pshift{0.2} % distance of box lines from each other
-\newcommand\vs{2} % vertical shift
+\newcommand\vertshift{2} % vertical shift
+\newcommand\innervert{1}
+\newcommand\innerhor{1}
+\newcommand\linedist{0.2}
 
 \usepackage{etoolbox}
 \patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}
