@@ -544,40 +544,6 @@
 
 \renewcommand{\walk}{{\sffamily\color{emred}\bfseries Walkthrough:~}}
 
-%hints and solutions
-
-\RequirePackage{ifthen}
-\RequirePackage{answers}
-% Setup counters
-\newcounter{hindex}\setcounter{hindex}{0}
-\newcounter{hintcounter}\setcounter{hintcounter}{0}
-\newcounter{sindex}\setcounter{sindex}{0}
-\newcounter{solcounter}\setcounter{solcounter}{0}
-% Define \addhint and \gethint
-% \addhint is used as \begin{addhint}{type in your hint}\end{addhint}
-% \gethint is not used manually.
-\newcommand\addhint[1]{%
-	\stepcounter{hintcounter}%
-	\ref{hint:\thehintcounter}%
-	\expandafter\gdef\csname hintlist\thehintcounter\endcsname{#1}%
-}
-\newcommand\gethint[1]{%
-	\item \csname hintlist#1\endcsname \label{hint:#1}
-}
-\newcommand\addsol[1]{%
-	\stepcounter{solcounter}%
-	\ref{sol:\thesolcounter}%
-	\expandafter\gdef\csname sollist\thesolcounter\endcsname{#1}%
-}
-\newcommand\getsol[1]{%
-	\item \csname sollist#1\endcsname \label{sol:#1}
-}
-% You put (typically) \begin{hint}All of your \begin{addhint}..\end{addhint} here\end{hint} so it looks like Hint: # # #
-\newenvironment{hint}{\mbox\bgroup\footnotesize\normalfont\textbf{Hints}:}{\hspace{-0.5ex}\egroup}
-\newenvironment{hintone}{\mbox\bgroup\footnotesize\normalfont\textbf{Hint}:}{\hspace{-0.5ex}\egroup}
-\newenvironment{solu}{\mbox\bgroup\footnotesize\normalfont\textbf{Solution}:}{\hspace{-0.5ex}\egroup}
-\RequirePackage{changepage}
-
 % compatibility with dennis sty
 
 \newcommand{\chapterquote}[2]{}
