@@ -1,6 +1,8 @@
 # Install instructions
 
-All you have to do is clone this repository into `~/texmf/tex/latex` (or whatever your personal texmf happens to be).
+All you have to do is clone this repository into `~/texmf/tex/latex` (or whatever your personal texmf happens to be). So just run
+    cd ~/texmf/tex/latex
+    git clone https://github.com/chennisden/chennistex
 
 # This repository is not a good example of TeX code.
 
